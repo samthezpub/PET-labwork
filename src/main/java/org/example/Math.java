@@ -2,30 +2,32 @@ package org.example;
 
 public class Math {
     public static double calculateA(double volume, int temp, double mass, GasType gasType){
-        double destinity = 0;
+        double density; // плотность
 
         switch (GasType.valueOf(String.valueOf(gasType))){
             case Nitrogen:
-                destinity = 0.0012506;
+                density = 1.2506;
                 break;
             case Argon:
-                destinity = 0.001784;
+                density = 1.784;
                 break;
             case Oxygen:
-                destinity = 0.001429;
+                density = 1.429;
                 break;
             case Neon:
-                destinity = 0.0008999;
+                density = 0.9002;
                 break;
             case Fluorine:
-                destinity = 0.001580;
+                density = 1.696;
                 break;
             case NitrogenOxide:
+                density = 1.2506;
                 break;
             case CarbonOxide:
+                density = 1.165;
                 break;
             default:
-                throw new IllegalStateException("Unexpected value: " + GasType.valueOf(String.valueOf(gasType)));
+                density = 0;
         }
 
         double result = 0;
