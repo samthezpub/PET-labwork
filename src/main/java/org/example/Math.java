@@ -4,7 +4,7 @@ public class Math {
     public static double calculateA(int temp, double mass, GasType gasType){
         double volume = 1; // объём, в литрах
 
-        // плотность, в г/м3, зависит от типа газа
+        // плотность, в г/м3, зависит от указанного типа газа
         double density = switch (GasType.valueOf(String.valueOf(gasType))) {
             case Nitrogen, NitrogenOxide -> 1.2506;
             case Argon -> 1.784;
