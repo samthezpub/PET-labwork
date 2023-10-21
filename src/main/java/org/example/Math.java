@@ -17,6 +17,6 @@ public class Math {
         };
 
         double result = 0;
-        return result; // я обязательно сделаю вывод сразу в return, без это переменной
+        return result; // я обязательно сделаю вывод сразу в return, без этой переменной
     }
 }
