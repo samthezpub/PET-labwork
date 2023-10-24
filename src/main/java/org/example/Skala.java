@@ -7,9 +7,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Skala {
+    private boolean isVisible = false;
+
+    public void setVisible(boolean visible) {
+        isVisible = visible;
+    }
+
     public Skala () {
         JFrame frame = new JFrame("Bounded Range Model Example");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(300, 150);
 
         BoundedRangeModel model = new DefaultBoundedRangeModel(50, 0, 0, 100);
@@ -47,8 +52,8 @@ public class Skala {
         JPanel panel = new JPanel();
         panel.add(progressBar);
         panel.add(slider);
-        panel.add(incrementButton);
         panel.add(decrementButton);
+        panel.add(incrementButton);
 
         frame.add(panel);
         frame.setVisible(true);

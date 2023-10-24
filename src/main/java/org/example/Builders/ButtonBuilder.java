@@ -1,7 +1,6 @@
 package org.example.Builders;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionListener;
 
 /**
@@ -12,14 +11,6 @@ import java.awt.event.ActionListener;
 public class ButtonBuilder<T> {
 
     JButton button = new JButton();
-
-    /**
-     * Добавляет надпись на кнопке
-     * @param text String надпись на кнопке
-     */
-    public void addText(String text){
-        button.setText(text);
-    }
 
     /**
      * Устанавливает размеры кнопки
@@ -57,4 +48,8 @@ public class ButtonBuilder<T> {
         return button;
     }
 
+    // Функция для создания текста на кнопке теперь конструктор
+    public ButtonBuilder(String text) {
+        button.setText(text);
+    }
 }
