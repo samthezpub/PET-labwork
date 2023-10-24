@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa85c1a2-b9cc-4d56-ac3f-58ed65cc2163" name="Changes" comment="about and main forms">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Interface/About.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Builders/ButtonBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Builders/ButtonBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/MainForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/MainForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Skala.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Skala.java" afterDir="false" />
-    </list>
+    <list default="true" id="fa85c1a2-b9cc-4d56-ac3f-58ed65cc2163" name="Changes" comment="Added 2 new buttons to main menu (yes, ya iz anglii)" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -112,7 +105,15 @@
       <option name="project" value="LOCAL" />
       <updated>1697903493671</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added 2 new buttons to main menu (yes, ya iz anglii)">
+      <option name="closed" value="true" />
+      <created>1698178296232</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1698178296233</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -120,6 +121,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="about and main forms" />
-    <option name="LAST_COMMIT_MESSAGE" value="about and main forms" />
+    <MESSAGE value="Added 2 new buttons to main menu (yes, ya iz anglii)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added 2 new buttons to main menu (yes, ya iz anglii)" />
   </component>
 </project>
