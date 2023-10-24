@@ -5,7 +5,7 @@ import javax.swing.*;
 public class App {
     public static void main(String[] args) {
 
-        MainForm mainForm = new MainForm();
+         Skala skala = new Skala();
 
         {
             JFrame main = new JFrame("About");
