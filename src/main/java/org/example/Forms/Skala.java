@@ -1,8 +1,9 @@
-package org.example;
+package org.example.Forms;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,8 +15,10 @@ public class Skala {
     }
 
     public Skala () {
-        JFrame frame = new JFrame("Bounded Range Model Example");
+        JDialog frame = new JDialog();
         frame.setSize(300, 150);
+        frame.setModal(true);
+        frame.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
 
         BoundedRangeModel model = new DefaultBoundedRangeModel(50, 0, 0, 100);
 

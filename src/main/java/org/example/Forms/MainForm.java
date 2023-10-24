@@ -1,7 +1,6 @@
-package org.example;
+package org.example.Forms;
 
 import org.example.Builders.ButtonBuilder;
-import org.example.Interface.About;
 import org.example.Interface.IForm;
 
 import javax.swing.*;
@@ -12,7 +11,8 @@ import java.awt.event.ActionListener;
 public class MainForm implements IForm {
 
     private JFrame mainMenu = new JFrame("Главное меню");
-    private JPanel buttonPanel = new JPanel(null);
+    private JPanel mainPanel = new JPanel(new FlowLayout());
+
 
     public MainForm() {
         int x = 700;
@@ -20,37 +20,21 @@ public class MainForm implements IForm {
         mainMenu.setSize(x, y);
         mainMenu.setResizable(false);
 
+        setupLabels();
 
-        ButtonBuilder exitButton = new ButtonBuilder("Выйти"); // Короч мой класс для создания кнопок
-        exitButton.addSize(150, 50); // добавить размер
-        exitButton.addPosition(10, 400); // установить позицию
-        exitButton.addAction(new ExitAction()); // установить то что будет при нажатии
+        ButtonBuilder exitButton = new ButtonBuilder("Выйти");
+        exitButton.addSize(150, 50);
+        exitButton.addPosition(10, 400);
+        exitButton.addAction(new ExitAction());
 
-        JButton exitButtonMenu = exitButton.build(); // build() возвращает готовую кнопку учитывая установленные ранее значения
+        JButton exitButtonMenu = exitButton.build();
 
-        buttonPanel.add(exitButtonMenu);
-        addToFrame(buttonPanel);
-
-
-        mainMenu.setVisible(true); // делаем форму видимой
-        mainMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // при закрытии программа закрывается
-
-        /*
-           аналогичное создание кнопки по шаблону выше
-        */
         ButtonBuilder aboutMenu = new ButtonBuilder("О программе");
         aboutMenu.addPosition(10, 340);
         aboutMenu.addSize(150, 50);
-        
+
         JButton aboutMenuOpen = aboutMenu.build();
 
-        buttonPanel.add(aboutMenuOpen);
-        addToFrame(buttonPanel);
-
-        /*
-            действие по нажатию кнопки (прошлый вариант мне не понравился)
-            Инициализирует форму About и делает её видимой
-        */
         aboutMenuOpen.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -65,21 +49,45 @@ public class MainForm implements IForm {
 
         JButton settingsMenuOpen = settingsMenu.build();
 
-        buttonPanel.add(settingsMenuOpen);
-        addToFrame(buttonPanel);
-
         settingsMenuOpen.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Skala skala = new Skala();
                 skala.setVisible(true);
+
             }
         });
 
-        mainMenu.setVisible(true); // делаем главное меню видимым
+        JPanel buttonPanel = new JPanel(new BorderLayout());
+
+
+
+        // Создаем панель для элементов в EAST
+        JPanel eastPanel = new JPanel(new GridLayout(3, 1)); // 2 строки, 1 столбец
+
+        // Добавляем элементы в панель для EAST
+        eastPanel.add(settingsMenuOpen);
+        eastPanel.add(aboutMenuOpen);
+        eastPanel.add(exitButtonMenu);
+
+        // Добавляем панель с элементами в EAST
+        buttonPanel.add(eastPanel, BorderLayout.EAST);
+
+
+
+        mainMenu.add(buttonPanel);
+
+        mainMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainMenu.setVisible(true);
     }
 
 
+    public void setupLabels() {
+
+        JLabel label = new JLabel("132123");
+        mainPanel.add(label, BorderLayout.CENTER);
+        addToFrame(mainPanel);
+    }
 
 
     /**
@@ -93,7 +101,7 @@ public class MainForm implements IForm {
         mainMenu.add(object);
     }
 
-    class ExitAction implements ActionListener{
+    class ExitAction implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.exit(0);

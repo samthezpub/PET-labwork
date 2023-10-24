@@ -1,5 +1,7 @@
 package org.example.Builders;
 
+import org.example.Forms.MainForm;
+
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
@@ -34,7 +36,7 @@ public class ButtonBuilder<T> {
      * Устанавливает что кнопка будет делать при нажатии
      * @param action действие при нажатии
      *
-     * @see org.example.MainForm.ExitAction пример действия
+     * @see MainForm.ExitAction пример действия
      */
     public void addAction(T action){
         button.addActionListener((ActionListener) action);
