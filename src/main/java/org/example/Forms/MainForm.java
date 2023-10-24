@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 public class MainForm implements IForm {
 
     private JFrame mainMenu = new JFrame("Главное меню");
-    private JPanel mainPanel = new JPanel(new FlowLayout());
+    private JPanel mainPanel = new JPanel(new BorderLayout());
 
 
     public MainForm() {
@@ -19,8 +19,6 @@ public class MainForm implements IForm {
         int y = 500;
         mainMenu.setSize(x, y);
         mainMenu.setResizable(false);
-
-        setupLabels();
 
         ButtonBuilder exitButton = new ButtonBuilder("Выйти");
         exitButton.addSize(150, 50);
@@ -58,12 +56,11 @@ public class MainForm implements IForm {
             }
         });
 
-        JPanel buttonPanel = new JPanel(new BorderLayout());
 
 
 
         // Создаем панель для элементов в EAST
-        JPanel eastPanel = new JPanel(new GridLayout(3, 1)); // 2 строки, 1 столбец
+        JPanel eastPanel = new JPanel(new GridLayout(3, 1)); // 3 строки, 1 столбец
 
         // Добавляем элементы в панель для EAST
         eastPanel.add(settingsMenuOpen);
@@ -71,11 +68,11 @@ public class MainForm implements IForm {
         eastPanel.add(exitButtonMenu);
 
         // Добавляем панель с элементами в EAST
-        buttonPanel.add(eastPanel, BorderLayout.EAST);
+        mainPanel.add(eastPanel, BorderLayout.EAST);
 
 
 
-        mainMenu.add(buttonPanel);
+        mainMenu.add(mainPanel);
 
         mainMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainMenu.setVisible(true);
