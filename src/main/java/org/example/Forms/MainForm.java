@@ -71,6 +71,13 @@ public class MainForm implements IForm {
         mainPanel.add(eastPanel, BorderLayout.EAST);
 
 
+        JPanel labelOptionalInfo = new JPanel(new BorderLayout());
+        labelOptionalInfo.setLayout(new FlowLayout());
+        JPanel labelMainInfo = new JPanel(new BorderLayout());
+        labelMainInfo.setLayout(new FlowLayout());
+        setupLabels(labelOptionalInfo, labelMainInfo);
+        mainPanel.add(labelOptionalInfo, BorderLayout.WEST);
+        mainPanel.add(labelMainInfo, BorderLayout.NORTH);
 
         mainMenu.add(mainPanel);
 
@@ -79,11 +86,24 @@ public class MainForm implements IForm {
     }
 
 
-    public void setupLabels() {
+    public void setupLabels(JPanel labelOptionalInfo, JPanel labelMainInfo) {
 
-        JLabel label = new JLabel("132123");
-        mainPanel.add(label, BorderLayout.CENTER);
-        addToFrame(mainPanel);
+        JLabel molarMass = new JLabel("Молярная масса: ");
+        JLabel gas = new JLabel("Газ: ");
+        JLabel value = new JLabel("V: ");
+        JLabel gasConstant = new JLabel("R: ");
+        JLabel weight = new JLabel("Вес: ");
+        JLabel density = new JLabel("P: ");
+        JLabel temperature = new JLabel("T: ");
+
+        labelOptionalInfo.add(molarMass, BorderLayout.EAST);
+        labelOptionalInfo.add(gas, BorderLayout.EAST);
+        labelOptionalInfo.add(value, BorderLayout.EAST);
+        labelOptionalInfo.add(gasConstant, BorderLayout.EAST);
+        labelOptionalInfo.add(weight, BorderLayout.EAST);
+
+        labelMainInfo.add(density);
+        labelMainInfo.add(temperature);
     }
 
 
