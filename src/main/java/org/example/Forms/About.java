@@ -1,6 +1,7 @@
-package org.example.Interface;
+package org.example.Forms;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class About {
     private boolean isVisible = false;
@@ -10,7 +11,9 @@ public class About {
     }
 
     public About() {
-        JFrame about = new JFrame("About");
+        JDialog about = new JDialog();
+        about.setModal(true);
+        about.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
         int x = 700;
         int y = 500;
         // Загрузка изображения

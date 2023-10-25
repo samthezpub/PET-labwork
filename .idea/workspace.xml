@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa85c1a2-b9cc-4d56-ac3f-58ed65cc2163" name="Changes" comment="Added 2 new buttons to main menu (yes, ya iz anglii)" />
+    <list default="true" id="fa85c1a2-b9cc-4d56-ac3f-58ed65cc2163" name="Changes" comment="New ugly buttons and mainForm freeze when other form called (About, Skala)" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,29 +49,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "true",
-    "Repository.Attach.Annotations": "true",
-    "Repository.Attach.JavaDocs": "true",
-    "Repository.Attach.Sources": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "D:/Java Projects/untitled1/src/main/resources/about",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Java Projects/untitled1/src/main/resources/about&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Java Projects\untitled1\src\main\resources\about" />
@@ -105,13 +105,13 @@
       <option name="project" value="LOCAL" />
       <updated>1697903493671</updated>
     </task>
-    <task id="LOCAL-00002" summary="Added 2 new buttons to main menu (yes, ya iz anglii)">
+    <task id="LOCAL-00002" summary="New ugly buttons and mainForm freeze when other form called (About, Skala)">
       <option name="closed" value="true" />
-      <created>1698178296232</created>
+      <created>1698181655016</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1698178296233</updated>
+      <updated>1698181655016</updated>
     </task>
     <option name="localTasksCounter" value="3" />
     <servers />
@@ -121,7 +121,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="about and main forms" />
-    <MESSAGE value="Added 2 new buttons to main menu (yes, ya iz anglii)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added 2 new buttons to main menu (yes, ya iz anglii)" />
+    <MESSAGE value="New ugly buttons and mainForm freeze when other form called (About, Skala)" />
+    <option name="LAST_COMMIT_MESSAGE" value="New ugly buttons and mainForm freeze when other form called (About, Skala)" />
   </component>
 </project>
