@@ -18,6 +18,7 @@ public class Skala {
         JDialog frame = new JDialog();
         frame.setSize(300, 150);
         frame.setModal(true);
+        frame.setTitle("Настройки");
         frame.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
 
         BoundedRangeModel model = new DefaultBoundedRangeModel(50, 0, 0, 100);
@@ -58,7 +59,34 @@ public class Skala {
         panel.add(decrementButton);
         panel.add(incrementButton);
 
+        /*
+            Настройка цвета
+         */
+        panel.setBackground(Color.getHSBColor(6.5f, 0.30f, 0.6f));
+
+        incrementButton.setBackground(Color.getHSBColor(6.5f, 0.4f, 0.5f));
+        incrementButton.setForeground(Color.WHITE);
+        incrementButton.setFocusPainted(false);
+        incrementButton.setBorderPainted(false);
+
+        decrementButton.setBackground(Color.getHSBColor(6.5f, 0.4f, 0.5f));
+        decrementButton.setForeground(Color.WHITE);
+        decrementButton.setFocusPainted(false);
+        decrementButton.setBorderPainted(false);
+
+        slider.setBackground(Color.getHSBColor(6.5f, 0.30f, 0.6f));
+        slider.setForeground(Color.WHITE);
+
+        progressBar.setBackground(Color.DARK_GRAY);
+        progressBar.setForeground(Color.getHSBColor(6.5f, 0.4f, 0.5f));
+        progressBar.setStringPainted(true);
+        progressBar.setBorderPainted(true);
+
+        /*
+            Вывод формы
+         */
         frame.add(panel);
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
 }

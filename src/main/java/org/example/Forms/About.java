@@ -13,6 +13,7 @@ public class About {
     public About() {
         JDialog about = new JDialog();
         about.setModal(true);
+        about.setTitle("О программе");
         about.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
         int x = 700;
         int y = 500;
@@ -27,6 +28,7 @@ public class About {
 
         about.add(imageLabel);
 
+        about.setLocationRelativeTo(null);
         about.setVisible(true); //Otherwise the frame will not show up
     }
 }

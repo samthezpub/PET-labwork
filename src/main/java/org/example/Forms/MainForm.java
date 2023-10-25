@@ -60,7 +60,7 @@ public class MainForm implements IForm {
 
 
         // Создаем панель для элементов в EAST
-        JPanel eastPanel = new JPanel(new GridLayout(3, 1)); // 3 строки, 1 столбец
+        JPanel eastPanel = new JPanel(new GridLayout(3, 1, 0, 3)); // 3 строки, 1 столбец
 
         // Добавляем элементы в панель для EAST
         eastPanel.add(settingsMenuOpen);
@@ -74,7 +74,30 @@ public class MainForm implements IForm {
 
         mainMenu.add(mainPanel);
 
+        /*
+            Настройка цветов формы
+         */
+
+        mainPanel.setBackground(Color.getHSBColor(6.5f, 0.30f, 0.6f));
+        eastPanel.setBackground(Color.getHSBColor(6.5f, 0.30f, 0.6f));
+
+        aboutMenuOpen.setBackground(Color.getHSBColor(6.5f, 0.4f, 0.5f));
+        aboutMenuOpen.setForeground(Color.WHITE);
+        aboutMenuOpen.setFocusPainted(false);
+        aboutMenuOpen.setBorderPainted(false);
+
+        settingsMenuOpen.setBackground(Color.getHSBColor(6.5f, 0.4f, 0.5f));
+        settingsMenuOpen.setForeground(Color.WHITE);
+        settingsMenuOpen.setFocusPainted(false);
+        settingsMenuOpen.setBorderPainted(false);
+
+        exitButtonMenu.setBackground(Color.getHSBColor(6.5f, 0.4f, 0.5f));
+        exitButtonMenu.setForeground(Color.WHITE);
+        exitButtonMenu.setFocusPainted(false);
+        exitButtonMenu.setBorderPainted(false);
+
         mainMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainMenu.setLocationRelativeTo(null);
         mainMenu.setVisible(true);
     }
 
