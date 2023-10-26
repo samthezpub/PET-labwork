@@ -16,12 +16,17 @@ public class MainForm implements IForm {
     private JFrame mainMenu = new JFrame("Главное меню");
     private JPanel mainPanel = new JPanel(new BorderLayout());
 
+    private JPanel labelOptionalInfo;
+
+    private Settings settings = new Settings();
+
 
     public MainForm() {
         int x = 700;
         int y = 500;
         mainMenu.setSize(x, y);
         mainMenu.setResizable(false);
+        settings.setSelectedItem(0.1F);
 
         ButtonBuilder exitButton = new ButtonBuilder("Выйти");
         exitButton.addSize(150, 50);
@@ -53,9 +58,9 @@ public class MainForm implements IForm {
         settingsMenuOpen.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Skala skala = new Skala();
-                skala.setVisible(true);
-
+                settings = new Settings();
+                settings.show();
+                setupLabels(labelOptionalInfo);
             }
         });
 
@@ -77,7 +82,7 @@ public class MainForm implements IForm {
 
         mainMenu.add(mainPanel);
 
-        JPanel labelOptionalInfo = new JPanel(new GridLayout(5, 1));
+        labelOptionalInfo = new JPanel(new GridLayout(5, 1));
         labelOptionalInfo.setLayout(new BoxLayout(labelOptionalInfo, BoxLayout.Y_AXIS));
         labelOptionalInfo.setPreferredSize(new Dimension(200, 200));
         setupLabels(labelOptionalInfo);
@@ -123,8 +128,12 @@ public class MainForm implements IForm {
      * @see ExperimentMath класс для вычисления формулы
      */
     public void setupLabels(JPanel labelOptionalInfo) {
+
+        // Очищаем панель перед использованием
+        labelOptionalInfo.removeAll();
+
         // Вычисляем по формуле
-        ExperimentEntity experiment = ExperimentMath.calculate(10, GasType.Argon, 0.5, 0.5F); // Тестовое, пока нет форм с выбором
+        ExperimentEntity experiment = ExperimentMath.calculate(10, GasType.Argon, 0.5, settings.getSelectedItem()); // Тестовое, пока нет форм с выбором
 
         // Этот блок отрисовывает нам текст с какими-то значениями
         JLabel molarMass = new JLabel("Молярная масса: " + experiment.getMolarMass());
@@ -143,6 +152,10 @@ public class MainForm implements IForm {
         labelOptionalInfo.add(weight, BorderLayout.WEST);
         labelOptionalInfo.add(density);
         labelOptionalInfo.add(temperature);
+
+        // Перерисовываем панель
+        labelOptionalInfo.revalidate();
+        labelOptionalInfo.repaint();
     }
 
 
