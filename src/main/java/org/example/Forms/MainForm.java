@@ -85,7 +85,7 @@ public class MainForm implements IForm {
         labelOptionalInfo = new JPanel(new GridLayout(5, 1));
         labelOptionalInfo.setLayout(new BoxLayout(labelOptionalInfo, BoxLayout.Y_AXIS));
         labelOptionalInfo.setPreferredSize(new Dimension(200, 200));
-        setupLabels(labelOptionalInfo);
+
         mainPanel.add(labelOptionalInfo, BorderLayout.WEST);
 
         mainMenu.add(mainPanel);
