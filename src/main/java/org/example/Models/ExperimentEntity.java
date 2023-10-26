@@ -1,15 +1,21 @@
 package org.example.Models;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.example.GasType;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ExperimentEntity {
     private double molarMass;
-    private GasType gas;
+    private String gasName;
     private double volume;
-    private double gasConstant;
+    private float gasConstantA;
+    private float gasConstantB;
+    private float gasConstantR;
     private float weight;
-    private int density;
+    private double pressure;
     private int temperature;
 }

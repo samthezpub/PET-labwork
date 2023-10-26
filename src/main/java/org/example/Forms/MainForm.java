@@ -1,7 +1,10 @@
 package org.example.Forms;
 
 import org.example.Builders.ButtonBuilder;
+import org.example.ExperimentMath;
+import org.example.GasType;
 import org.example.Interface.IForm;
+import org.example.Models.ExperimentEntity;
 
 import javax.swing.*;
 import java.awt.*;
@@ -77,9 +80,7 @@ public class MainForm implements IForm {
         JPanel labelOptionalInfo = new JPanel(new GridLayout(5, 1));
         labelOptionalInfo.setLayout(new BoxLayout(labelOptionalInfo, BoxLayout.Y_AXIS));
         labelOptionalInfo.setPreferredSize(new Dimension(200, 200));
-        JPanel labelMainInfo = new JPanel(new BorderLayout());
-        labelMainInfo.setLayout(new FlowLayout());
-        setupLabels(labelOptionalInfo, labelMainInfo);
+        setupLabels(labelOptionalInfo);
         mainPanel.add(labelOptionalInfo, BorderLayout.WEST);
 
         mainMenu.add(mainPanel);
@@ -116,29 +117,24 @@ public class MainForm implements IForm {
         mainMenu.setVisible(true);
     }
 
+    /**
+     *
+     * @param labelOptionalInfo наш panel со значениями
+     * @see ExperimentMath класс для вычисления формулы
+     */
+    public void setupLabels(JPanel labelOptionalInfo) {
+        // Вычисляем по формуле
+        ExperimentEntity experiment = ExperimentMath.calculate(10, GasType.Argon, 0.5, 0.5F); // Тестовое, пока нет форм с выбором
 
-    public void setupLabels(JPanel labelOptionalInfo, JPanel labelMainInfo) {
+        // Этот блок отрисовывает нам текст с какими-то значениями
+        JLabel molarMass = new JLabel("Молярная масса: " + experiment.getMolarMass());
+        JLabel gas = new JLabel("Газ: " + experiment.getGasName());
+        JLabel value = new JLabel("V: " + experiment.getVolume());
+        JLabel gasConstant = new JLabel("R: " + experiment.getGasConstantR());
+        JLabel weight = new JLabel("Вес: " + experiment.getWeight());
+        JLabel density = new JLabel("P: " + experiment.getPressure());
+        JLabel temperature = new JLabel("T: " + experiment.getTemperature());
 
-        JLabel molarMass = new JLabel("Молярная масса: ");
-        molarMass.setHorizontalAlignment(SwingConstants.CENTER);
-
-        JLabel gas = new JLabel("Газ: ");
-        gas.setHorizontalAlignment(SwingConstants.CENTER);
-
-        JLabel value = new JLabel("V: ");
-        value.setHorizontalAlignment(SwingConstants.CENTER);
-
-        JLabel gasConstant = new JLabel("R: ");
-        gasConstant.setHorizontalAlignment(SwingConstants.CENTER);
-
-        JLabel weight = new JLabel("Вес: ");
-        weight.setHorizontalAlignment(SwingConstants.CENTER);
-
-        JLabel density = new JLabel("P: ");
-        density.setHorizontalAlignment(SwingConstants.CENTER);
-
-        JLabel temperature = new JLabel("T: ");
-        temperature.setHorizontalAlignment(SwingConstants.CENTER);
 
         labelOptionalInfo.add(molarMass, BorderLayout.WEST);
         labelOptionalInfo.add(gas, BorderLayout.WEST);
