@@ -8,7 +8,7 @@ import java.awt.event.WindowEvent;
 
 public class Settings {
     private JDialog frame;
-    private float selectedItem;
+    private Float selectedItem;
     public Settings() {
         frame = new JDialog();
         frame.setModal(true);
@@ -52,14 +52,14 @@ public class Settings {
         cancelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(0); // Закрыть приложение при нажатии "Отмена"
+                frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
             }
         });
 
 
     }
 
-    public float getSelectedItem() {
+    public Float getSelectedItem() {
         return selectedItem;
     }
 

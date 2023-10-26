@@ -1,6 +1,7 @@
 package org.example.Forms;
 
 import org.example.Builders.ButtonBuilder;
+import org.example.Exceptions.ValueNotSelectedException;
 import org.example.ExperimentMath;
 import org.example.GasType;
 import org.example.Interface.IForm;
@@ -26,7 +27,8 @@ public class MainForm implements IForm {
         int y = 500;
         mainMenu.setSize(x, y);
         mainMenu.setResizable(false);
-        settings.setSelectedItem(0.1F);
+
+
 
         ButtonBuilder exitButton = new ButtonBuilder("Выйти");
         exitButton.addSize(150, 50);
@@ -128,6 +130,15 @@ public class MainForm implements IForm {
      * @see ExperimentMath класс для вычисления формулы
      */
     public void setupLabels(JPanel labelOptionalInfo) {
+
+        try {
+            if (settings.getSelectedItem() == null){
+                throw new ValueNotSelectedException("Вы не выбрали значение!");
+            }
+        } catch (ValueNotSelectedException e){
+            return;
+        }
+
 
         // Очищаем панель перед использованием
         labelOptionalInfo.removeAll();
