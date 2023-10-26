@@ -74,13 +74,13 @@ public class MainForm implements IForm {
 
         mainMenu.add(mainPanel);
 
-        JPanel labelOptionalInfo = new JPanel(new BorderLayout());
-        labelOptionalInfo.setLayout(new FlowLayout());
+        JPanel labelOptionalInfo = new JPanel(new GridLayout(5, 1));
+        labelOptionalInfo.setLayout(new BoxLayout(labelOptionalInfo, BoxLayout.Y_AXIS));
+        labelOptionalInfo.setPreferredSize(new Dimension(200, 200));
         JPanel labelMainInfo = new JPanel(new BorderLayout());
         labelMainInfo.setLayout(new FlowLayout());
         setupLabels(labelOptionalInfo, labelMainInfo);
         mainPanel.add(labelOptionalInfo, BorderLayout.WEST);
-        mainPanel.add(labelMainInfo, BorderLayout.NORTH);
 
         mainMenu.add(mainPanel);
 
@@ -120,21 +120,33 @@ public class MainForm implements IForm {
     public void setupLabels(JPanel labelOptionalInfo, JPanel labelMainInfo) {
 
         JLabel molarMass = new JLabel("Молярная масса: ");
+        molarMass.setHorizontalAlignment(SwingConstants.CENTER);
+
         JLabel gas = new JLabel("Газ: ");
+        gas.setHorizontalAlignment(SwingConstants.CENTER);
+
         JLabel value = new JLabel("V: ");
+        value.setHorizontalAlignment(SwingConstants.CENTER);
+
         JLabel gasConstant = new JLabel("R: ");
+        gasConstant.setHorizontalAlignment(SwingConstants.CENTER);
+
         JLabel weight = new JLabel("Вес: ");
+        weight.setHorizontalAlignment(SwingConstants.CENTER);
+
         JLabel density = new JLabel("P: ");
+        density.setHorizontalAlignment(SwingConstants.CENTER);
+
         JLabel temperature = new JLabel("T: ");
+        temperature.setHorizontalAlignment(SwingConstants.CENTER);
 
-        labelOptionalInfo.add(molarMass, BorderLayout.EAST);
-        labelOptionalInfo.add(gas, BorderLayout.EAST);
-        labelOptionalInfo.add(value, BorderLayout.EAST);
-        labelOptionalInfo.add(gasConstant, BorderLayout.EAST);
-        labelOptionalInfo.add(weight, BorderLayout.EAST);
-
-        labelMainInfo.add(density);
-        labelMainInfo.add(temperature);
+        labelOptionalInfo.add(molarMass, BorderLayout.WEST);
+        labelOptionalInfo.add(gas, BorderLayout.WEST);
+        labelOptionalInfo.add(value, BorderLayout.WEST);
+        labelOptionalInfo.add(gasConstant, BorderLayout.WEST);
+        labelOptionalInfo.add(weight, BorderLayout.WEST);
+        labelOptionalInfo.add(density);
+        labelOptionalInfo.add(temperature);
     }
 
 
