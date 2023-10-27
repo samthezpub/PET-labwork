@@ -17,11 +17,11 @@ import java.awt.event.ActionListener;
 public class MainForm implements IForm {
 
 
-    private JFrame mainMenu = new JFrame("Главное меню");
-    private JPanel mainPanel = new JPanel(new BorderLayout());
-    private JProgressBar progressBar;
+    private final JFrame mainMenu = new JFrame("Главное меню");
+    private final JPanel mainPanel = new JPanel(new BorderLayout());
+    private final JProgressBar progressBar;
 
-    private JPanel labelOptionalInfo;
+    private final JPanel labelOptionalInfo;
 
     private Settings settings = new Settings();
 
@@ -108,7 +108,7 @@ public class MainForm implements IForm {
                 settings = new Settings();
                 settings.show();
                 if (settings.getSelectedItem() != null) {
-                    setupLabels(labelOptionalInfo);
+                    changeLabels(labelOptionalInfo);
                     startExperimentButton.setEnabled(true);
                 }
 
@@ -138,7 +138,7 @@ public class MainForm implements IForm {
                 }
                 progressBar.setValue(model.getValue());
                 slider.setValue(model.getValue());
-                setupLabels(labelOptionalInfo);
+                changeLabels(labelOptionalInfo);
             }
         });
 
@@ -164,7 +164,7 @@ public class MainForm implements IForm {
 
         labelOptionalInfo = new JPanel(new GridLayout(5, 1));
         labelOptionalInfo.setLayout(new BoxLayout(labelOptionalInfo, BoxLayout.Y_AXIS));
-        labelOptionalInfo.setPreferredSize(new Dimension(200, 200));
+        labelOptionalInfo.setPreferredSize(new Dimension(400, 200));
 
         mainPanel.add(labelOptionalInfo, BorderLayout.WEST);
 
@@ -233,11 +233,21 @@ public class MainForm implements IForm {
 
     }
 
+    public void setupStylesLabels(JLabel molarMass, JLabel gas, JLabel value, JLabel gasConstant, JLabel weight, JLabel density, JLabel temperature){
+        molarMass.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 16));
+        gas.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 16));
+        value.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 16));
+        gasConstant.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 16));
+        weight.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 16));
+        density.setFont(new Font(Font.DIALOG, Font.BOLD, 16));
+        temperature.setFont(new Font(Font.DIALOG, Font.BOLD, 16));
+    }
+
     /**
      * @param labelOptionalInfo наш panel со значениями
      * @see ExperimentMath класс для вычисления формулы
      */
-    public void setupLabels(JPanel labelOptionalInfo) {
+    public void changeLabels(JPanel labelOptionalInfo) {
 
         try {
             if (settings.getSelectedItem() == null) {
@@ -266,6 +276,8 @@ public class MainForm implements IForm {
         JLabel weight = new JLabel("Вес: ≈ " + experiment.getWeight());
         JLabel density = new JLabel("P: ≈ " + experiment.getPressure());
         JLabel temperature = new JLabel("T: " + experiment.getTemperature());
+
+        setupStylesLabels(molarMass,gas,value,gasConstant,weight,density,temperature);
 
         labelOptionalInfo.add(molarMass, BorderLayout.WEST);
         labelOptionalInfo.add(gas, BorderLayout.WEST);
@@ -301,6 +313,10 @@ public class MainForm implements IForm {
             }
         }
 
+        /**
+         * Метод создаёт Thread и возвращает его
+         * @return Thread
+         */
         public Thread getExperimentThread() {
             Thread t1 = new Thread(() -> {
                 int min = progressBar.getValue();
@@ -313,7 +329,7 @@ public class MainForm implements IForm {
                         Thread.sleep(100);
 
                         progressBar.setValue(progressBar.getValue() + 1);
-                        setupLabels(labelOptionalInfo);
+                        changeLabels(labelOptionalInfo);
                     }
                 } catch (Exception e) {
 
@@ -324,17 +340,7 @@ public class MainForm implements IForm {
             return t1;
         }
 
-        public boolean isRunning() {
-            return isRunning;
-        }
     }
-
-
-
-
-
-
-
 
 
 
