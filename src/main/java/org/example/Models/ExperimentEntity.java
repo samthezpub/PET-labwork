@@ -3,7 +3,6 @@ package org.example.Models;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.example.GasType;
 
 @Data
 @AllArgsConstructor

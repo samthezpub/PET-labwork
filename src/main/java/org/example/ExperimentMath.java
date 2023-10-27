@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.Enums.GasType;
 import org.example.Models.ExperimentEntity;
 
 public class ExperimentMath {

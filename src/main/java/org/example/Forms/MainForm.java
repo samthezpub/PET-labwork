@@ -3,7 +3,7 @@ package org.example.Forms;
 import org.example.Builders.ButtonBuilder;
 import org.example.Exceptions.ValueNotSelectedException;
 import org.example.ExperimentMath;
-import org.example.GasType;
+import org.example.Enums.GasType;
 import org.example.Interface.IForm;
 import org.example.Models.ExperimentEntity;
 
