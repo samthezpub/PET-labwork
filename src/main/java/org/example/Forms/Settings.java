@@ -12,6 +12,7 @@ public class Settings {
     public Settings() {
         frame = new JDialog();
         frame.setModal(true);
+        frame.setTitle("Настройка");
         frame.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
         frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         frame.setSize(300, 150);
@@ -57,6 +58,25 @@ public class Settings {
         });
 
 
+
+        /*
+            Настройка цвета
+         */
+        panel.setBackground(Color.getHSBColor(6.5f, 0.30f, 0.6f));
+        buttonPanel.setBackground(Color.getHSBColor(6.5f, 0.30f, 0.6f));
+
+        okButton.setBackground(Color.getHSBColor(6.5f, 0.4f, 0.5f));
+        okButton.setForeground(Color.WHITE);
+        okButton.setFocusPainted(false);
+        okButton.setBorderPainted(false);
+
+        cancelButton.setBackground(Color.getHSBColor(6.5f, 0.4f, 0.5f));
+        cancelButton.setForeground(Color.WHITE);
+        cancelButton.setFocusPainted(false);
+        cancelButton.setBorderPainted(false);
+
+        comboBox.setBackground(Color.getHSBColor(6.5f, 0.4f, 0.5f));
+        comboBox.setForeground(Color.WHITE);
     }
 
     public Float getSelectedItem() {

@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 
 public class MainForm implements IForm {
 
+
     private JFrame mainMenu = new JFrame("Главное меню");
     private JPanel mainPanel = new JPanel(new BorderLayout());
 
@@ -103,6 +104,7 @@ public class MainForm implements IForm {
 
         mainPanel.setBackground(Color.getHSBColor(6.5f, 0.30f, 0.6f));
         eastPanel.setBackground(Color.getHSBColor(6.5f, 0.30f, 0.6f));
+        labelOptionalInfo.setBackground(Color.getHSBColor(6.5f, 0.30f, 0.6f)); // боковая панель с цифрами
 
         aboutMenuOpen.setBackground(Color.getHSBColor(6.5f, 0.4f, 0.5f));
         aboutMenuOpen.setForeground(Color.WHITE);
@@ -146,7 +148,11 @@ public class MainForm implements IForm {
         // Вычисляем по формуле
         ExperimentEntity experiment = ExperimentMath.calculate(10, GasType.Argon, 0.5, settings.getSelectedItem()); // Тестовое, пока нет форм с выбором
 
-        // Этот блок отрисовывает нам текст с какими-то значениями
+
+
+        /*
+           Этот блок отрисовывает нам текст с какими-то значениями
+        */
         JLabel molarMass = new JLabel("Молярная масса: " + experiment.getMolarMass());
         JLabel gas = new JLabel("Газ: " + experiment.getGasName());
         JLabel value = new JLabel("V: " + experiment.getVolume());
@@ -154,7 +160,6 @@ public class MainForm implements IForm {
         JLabel weight = new JLabel("Вес: " + experiment.getWeight());
         JLabel density = new JLabel("P: " + experiment.getPressure());
         JLabel temperature = new JLabel("T: " + experiment.getTemperature());
-
 
         labelOptionalInfo.add(molarMass, BorderLayout.WEST);
         labelOptionalInfo.add(gas, BorderLayout.WEST);
