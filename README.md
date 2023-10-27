@@ -15,7 +15,7 @@
 # Разработчики
 
 - [samthezpub](https://github.com/samthezpub)
-- [MrDrag0nX](https://github.com/MrDrag0nX)
+- [MrDrag0nXYT](https://github.com/MrDrag0nXYT)
 - [KOSTOF](https://github.com/KOSTOF)
 - [Artem-Prots](https://github.com/Artem-Prots)
 - [Elikaka2](https://github.com/Elikaka2)
