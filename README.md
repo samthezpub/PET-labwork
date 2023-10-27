@@ -18,5 +18,5 @@
 - [MrDrag0nX](https://github.com/MrDrag0nX)
 - [KOSTOF](https://github.com/KOSTOF)
 - [Artem-Prots](https://github.com/Artem-Prots)
-- Elikaka2(НУЖНА ССЫЛКА на GitHub!)
-- J1yNa((НУЖНА ССЫЛКА на GitHub!))
+- [Elikaka2](https://github.com/Elikaka2)
+- [J1yNa](https://github.com/J1yNa)
