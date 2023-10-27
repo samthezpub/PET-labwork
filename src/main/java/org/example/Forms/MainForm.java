@@ -211,7 +211,7 @@ public class MainForm implements IForm {
         labelOptionalInfo.removeAll();
 
         // Вычисляем по формуле
-        ExperimentEntity experiment = ExperimentMath.calculate(progressBar.getValue(), GasType.Argon, 0.5, settings.getSelectedItem()); // Тестовое, пока нет форм с выбором
+        ExperimentEntity experiment = ExperimentMath.calculate(progressBar.getValue(), GasType.Argon, settings.getSelectedItem(), settings.getSelectedItem()); // Тестовое, пока нет форм с выбором
 
 
 
