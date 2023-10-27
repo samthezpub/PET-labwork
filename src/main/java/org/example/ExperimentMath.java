@@ -1,8 +1,25 @@
 package org.example;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import org.example.Models.ExperimentEntity;
 
 public class ExperimentMath {
+    /*
+               Шаблон для округления
+
+       Варианты:
+           "0.00" : 123.49 -> 123.50
+           "#.##" : 123.49 -> 123.5
+
+       Можно также увеличить кол-во нулей после запятой!
+    */
+    private static final DecimalFormat df = new DecimalFormat("0.00");
+
+    // TODO сделать выбор формата округления в настройках
+
+
+
     public static ExperimentEntity calculate(int temp, GasType gasType, double volume, float weight) {
 
 
@@ -16,14 +33,14 @@ public class ExperimentMath {
         double P = ((n * R * T) / (volume - n * b)) - (n * n * a) / (volume * volume); //
 
         ExperimentEntity experimentEntity = new ExperimentEntity(
-                gasType.getMass(),
+                df.format(gasType.getMass()),
                 gasType.getTitle(),
-                volume,
-                a,
-                b,
-                R,
-                n,
-                P,
+                df.format(volume),
+                df.format(a),
+                df.format(b),
+                df.format(R),
+                df.format(n),
+                df.format(P),
                 T
         );
 

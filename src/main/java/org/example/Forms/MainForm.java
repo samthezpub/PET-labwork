@@ -153,12 +153,12 @@ public class MainForm implements IForm {
         /*
            Этот блок отрисовывает нам текст с какими-то значениями
         */
-        JLabel molarMass = new JLabel("Молярная масса: " + experiment.getMolarMass());
+        JLabel molarMass = new JLabel("Молярная масса: ≈ " + experiment.getMolarMass());
         JLabel gas = new JLabel("Газ: " + experiment.getGasName());
-        JLabel value = new JLabel("V: " + experiment.getVolume());
-        JLabel gasConstant = new JLabel("R: " + experiment.getGasConstantR());
-        JLabel weight = new JLabel("Вес: " + experiment.getWeight());
-        JLabel density = new JLabel("P: " + experiment.getPressure());
+        JLabel value = new JLabel("V: ≈ " + experiment.getVolume());
+        JLabel gasConstant = new JLabel("R: ≈ " + experiment.getGasConstantR());
+        JLabel weight = new JLabel("Вес: ≈ " + experiment.getWeight());
+        JLabel density = new JLabel("P: ≈ " + experiment.getPressure());
         JLabel temperature = new JLabel("T: " + experiment.getTemperature());
 
         labelOptionalInfo.add(molarMass, BorderLayout.WEST);

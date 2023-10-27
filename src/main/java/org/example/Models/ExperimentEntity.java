@@ -9,13 +9,13 @@ import org.example.GasType;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ExperimentEntity {
-    private double molarMass;
+    private String molarMass;
     private String gasName;
-    private double volume;
-    private float gasConstantA;
-    private float gasConstantB;
-    private float gasConstantR;
-    private float weight;
-    private double pressure;
+    private String volume;
+    private String gasConstantA;
+    private String gasConstantB;
+    private String gasConstantR;
+    private String weight;
+    private String pressure;
     private int temperature;
 }
