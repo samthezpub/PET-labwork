@@ -8,6 +8,8 @@ import org.example.Interface.IForm;
 import org.example.Models.ExperimentEntity;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,6 +19,7 @@ public class MainForm implements IForm {
 
     private JFrame mainMenu = new JFrame("Главное меню");
     private JPanel mainPanel = new JPanel(new BorderLayout());
+    private JProgressBar progressBar;
 
     private JPanel labelOptionalInfo;
 
@@ -67,6 +70,68 @@ public class MainForm implements IForm {
             }
         });
 
+        /*
+        Шкала
+         */
+        BoundedRangeModel model = new DefaultBoundedRangeModel(50, 0, 0, 100);
+
+        progressBar = new JProgressBar(model);
+        progressBar.setStringPainted(true);
+
+        JSlider slider = new JSlider(model);
+
+        JButton incrementButton = new JButton("Большe");
+        JButton decrementButton = new JButton("Меньше");
+
+        incrementButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                model.setValue(model.getValue() + 1);
+            }
+        });
+
+        decrementButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                model.setValue(model.getValue() - 1);
+            }
+        });
+
+        model.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                progressBar.setValue(model.getValue());
+                slider.setValue(model.getValue());
+                setupLabels(labelOptionalInfo);
+            }
+        });
+
+        JPanel panel = new JPanel(new FlowLayout());
+        panel.add(progressBar);
+        panel.add(slider);
+
+        mainPanel.add(panel, BorderLayout.SOUTH);
+
+        // Стили для progressBara
+        panel.setBackground(Color.getHSBColor(6.5f, 0.30f, 0.6f));
+
+        incrementButton.setBackground(Color.getHSBColor(6.5f, 0.4f, 0.5f));
+        incrementButton.setForeground(Color.WHITE);
+        incrementButton.setFocusPainted(false);
+        incrementButton.setBorderPainted(false);
+
+        decrementButton.setBackground(Color.getHSBColor(6.5f, 0.4f, 0.5f));
+        decrementButton.setForeground(Color.WHITE);
+        decrementButton.setFocusPainted(false);
+        decrementButton.setBorderPainted(false);
+
+        slider.setBackground(Color.getHSBColor(6.5f, 0.30f, 0.6f));
+        slider.setForeground(Color.WHITE);
+
+        progressBar.setBackground(Color.darkGray);
+        progressBar.setForeground(Color.getHSBColor(6.5f, 0.4f, 0.5f));
+        progressBar.setStringPainted(true);
+        progressBar.setBorderPainted(true);
 
 
 
@@ -146,7 +211,7 @@ public class MainForm implements IForm {
         labelOptionalInfo.removeAll();
 
         // Вычисляем по формуле
-        ExperimentEntity experiment = ExperimentMath.calculate(10, GasType.Argon, 0.5, settings.getSelectedItem()); // Тестовое, пока нет форм с выбором
+        ExperimentEntity experiment = ExperimentMath.calculate(progressBar.getValue(), GasType.Argon, 0.5, settings.getSelectedItem()); // Тестовое, пока нет форм с выбором
 
 
 
