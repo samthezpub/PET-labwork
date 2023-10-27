@@ -2,6 +2,7 @@ package org.example;
 
 import java.text.DecimalFormat;
 
+import org.example.Enums.GasType;
 import org.example.Forms.Settings;
 import org.example.Models.ExperimentEntity;
 
