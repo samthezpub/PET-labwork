@@ -61,14 +61,55 @@ public class MainForm implements IForm {
 
         JButton settingsMenuOpen = settingsMenu.build();
 
+
+
+        JPanel experimentButtonsPanel = new JPanel(new FlowLayout());
+
+        ButtonBuilder startExperiment = new ButtonBuilder("Начать");
+        startExperiment.addSize(150,25);
+
+        JButton startExperimentButton = startExperiment.build();
+        startExperimentButton.setEnabled(false);
+
+        ButtonBuilder stopExperiment = new ButtonBuilder("Стоп");
+        stopExperiment.addSize(150,25);
+
+        JButton stopExperimentButton = stopExperiment.build();
+        stopExperimentButton.setEnabled(false);
+        startExperimentButton.addActionListener(new ActionListener(){
+
+            /**
+             * Invoked when an action occurs.
+             *
+             * @param e the event to be processed
+             */
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        stopExperimentButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
         settingsMenuOpen.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 settings = new Settings();
                 settings.show();
-                setupLabels(labelOptionalInfo);
+                if (settings.getSelectedItem() != null){
+                    setupLabels(labelOptionalInfo);
+                    startExperimentButton.setEnabled(true);
+                }
+
             }
         });
+
+        experimentButtonsPanel.add(startExperimentButton);
+        experimentButtonsPanel.add(stopExperimentButton);
 
         /*
         Шкала
@@ -115,23 +156,6 @@ public class MainForm implements IForm {
         // Стили для progressBara
         panel.setBackground(Color.getHSBColor(6.5f, 0.30f, 0.6f));
 
-        incrementButton.setBackground(Color.getHSBColor(6.5f, 0.4f, 0.5f));
-        incrementButton.setForeground(Color.WHITE);
-        incrementButton.setFocusPainted(false);
-        incrementButton.setBorderPainted(false);
-
-        decrementButton.setBackground(Color.getHSBColor(6.5f, 0.4f, 0.5f));
-        decrementButton.setForeground(Color.WHITE);
-        decrementButton.setFocusPainted(false);
-        decrementButton.setBorderPainted(false);
-
-        slider.setBackground(Color.getHSBColor(6.5f, 0.30f, 0.6f));
-        slider.setForeground(Color.WHITE);
-
-        progressBar.setBackground(Color.darkGray);
-        progressBar.setForeground(Color.getHSBColor(6.5f, 0.4f, 0.5f));
-        progressBar.setStringPainted(true);
-        progressBar.setBorderPainted(true);
 
 
 
@@ -145,10 +169,9 @@ public class MainForm implements IForm {
 
         // Добавляем панель с элементами в EAST
         mainPanel.add(eastPanel, BorderLayout.EAST);
+        mainPanel.add(experimentButtonsPanel, BorderLayout.NORTH);
 
 
-
-        mainMenu.add(mainPanel);
 
         labelOptionalInfo = new JPanel(new GridLayout(5, 1));
         labelOptionalInfo.setLayout(new BoxLayout(labelOptionalInfo, BoxLayout.Y_AXIS));
@@ -170,6 +193,7 @@ public class MainForm implements IForm {
         mainPanel.setBackground(Color.getHSBColor(6.5f, 0.30f, 0.6f));
         eastPanel.setBackground(Color.getHSBColor(6.5f, 0.30f, 0.6f));
         labelOptionalInfo.setBackground(Color.getHSBColor(6.5f, 0.30f, 0.6f)); // боковая панель с цифрами
+        experimentButtonsPanel.setBackground(Color.getHSBColor(6.5f, 0.30f, 0.6f));
 
         aboutMenuOpen.setBackground(Color.getHSBColor(6.5f, 0.4f, 0.5f));
         aboutMenuOpen.setForeground(Color.WHITE);
@@ -185,6 +209,24 @@ public class MainForm implements IForm {
         exitButtonMenu.setForeground(Color.WHITE);
         exitButtonMenu.setFocusPainted(false);
         exitButtonMenu.setBorderPainted(false);
+
+        startExperimentButton.setBackground(Color.getHSBColor(6.5f, 0.4f, 0.5f));
+        startExperimentButton.setForeground(Color.WHITE);
+        startExperimentButton.setFocusPainted(false);
+        startExperimentButton.setBorderPainted(false);
+
+        stopExperimentButton.setBackground(Color.getHSBColor(6.5f, 0.4f, 0.5f));
+        stopExperimentButton.setForeground(Color.WHITE);
+        stopExperimentButton.setFocusPainted(false);
+        stopExperimentButton.setBorderPainted(false);
+
+        slider.setBackground(Color.getHSBColor(6.5f, 0.30f, 0.6f));
+        slider.setForeground(Color.WHITE);
+
+        progressBar.setBackground(Color.darkGray);
+        progressBar.setForeground(Color.getHSBColor(6.5f, 0.4f, 0.5f));
+        progressBar.setStringPainted(true);
+        progressBar.setBorderPainted(true);
 
         mainMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainMenu.setLocationRelativeTo(null);
