@@ -1,4 +1,4 @@
-package org.example;
+package org.example.Enums;
 
 public enum GasType {
     Nitrogen("Азот", 14.000F, 1.390F, 0.039F),
