@@ -81,23 +81,13 @@ public class Settings {
 
                Можно также увеличить кол-во нулей после запятой!
             */
-                switch ((String) roundComboBox.getSelectedItem()){
-                    case "2 знака после запятой":
-                        selectedRound = "0.00";
-                        break;
-                    case "3 знака после запятой":
-                        selectedRound = "0.000";
-                        break;
-                    case "4 знака после запятой":
-                        selectedRound = "0.0000";
-                        break;
-                    case "5 знаков после запятой":
-                        selectedRound = "0.00000";
-                        break;
-                    default:
-                        selectedRound = "#.############";
-                        break;
-                }
+                selectedRound = switch ((String) roundComboBox.getSelectedItem()) {
+                    case "2 знака после запятой" -> "0.00";
+                    case "3 знака после запятой" -> "0.000";
+                    case "4 знака после запятой" -> "0.0000";
+                    case "5 знаков после запятой" -> "0.00000";
+                    default -> "#.############";
+                };
 
                 selectedItem = Float.parseFloat(selected);
                 frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
