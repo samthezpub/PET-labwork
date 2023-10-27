@@ -33,7 +33,6 @@ public class MainForm implements IForm {
         mainMenu.setResizable(false);
 
 
-
         ButtonBuilder exitButton = new ButtonBuilder("Выйти");
         exitButton.addSize(150, 50);
         exitButton.addPosition(10, 400);
@@ -61,45 +60,82 @@ public class MainForm implements IForm {
 
         JButton settingsMenuOpen = settingsMenu.build();
 
+
+        JPanel experimentButtonsPanel = new JPanel(new FlowLayout());
+
+        final Thread experimentThread = null;
+        ThreadProvider threadProvider = new ThreadProvider();
+
+        ButtonBuilder startExperiment = new ButtonBuilder("Начать");
+        startExperiment.addSize(150, 25);
+
+        JButton startExperimentButton = startExperiment.build();
+        startExperimentButton.setEnabled(false);
+
+        ButtonBuilder stopExperiment = new ButtonBuilder("Стоп");
+        stopExperiment.addSize(150, 25);
+
+        JButton stopExperimentButton = stopExperiment.build();
+        stopExperimentButton.setEnabled(false);
+        startExperimentButton.addActionListener(new ActionListener() {
+
+            /**
+             * Invoked when an action occurs.
+             *
+             * @param e the event to be processed
+             */
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                stopExperimentButton.setEnabled(true);
+                startExperimentButton.setEnabled(false);
+
+                threadProvider.startExperimentThread(experimentThread);
+            }
+        });
+        stopExperimentButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                stopExperimentButton.setEnabled(false);
+                startExperimentButton.setEnabled(true);
+
+                threadProvider.stopExperimentThread(experimentThread);
+            }
+        });
+
         settingsMenuOpen.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 settings = new Settings();
                 settings.show();
-                setupLabels(labelOptionalInfo);
+                if (settings.getSelectedItem() != null) {
+                    setupLabels(labelOptionalInfo);
+                    startExperimentButton.setEnabled(true);
+                }
+
             }
         });
+
+        experimentButtonsPanel.add(startExperimentButton);
+        experimentButtonsPanel.add(stopExperimentButton);
 
         /*
         Шкала
          */
-        BoundedRangeModel model = new DefaultBoundedRangeModel(50, 0, 0, 100);
+        BoundedRangeModel model = new DefaultBoundedRangeModel(50, 0, 0, 300);
 
         progressBar = new JProgressBar(model);
         progressBar.setStringPainted(true);
 
         JSlider slider = new JSlider(model);
 
-        JButton incrementButton = new JButton("Большe");
-        JButton decrementButton = new JButton("Меньше");
-
-        incrementButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                model.setValue(model.getValue() + 1);
-            }
-        });
-
-        decrementButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                model.setValue(model.getValue() - 1);
-            }
-        });
 
         model.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
+                if (progressBar.getValue() == progressBar.getMaximum()){
+                    stopExperimentButton.setEnabled(false);
+                    startExperimentButton.setEnabled(true);
+                }
                 progressBar.setValue(model.getValue());
                 slider.setValue(model.getValue());
                 setupLabels(labelOptionalInfo);
@@ -112,28 +148,6 @@ public class MainForm implements IForm {
 
         mainPanel.add(panel, BorderLayout.SOUTH);
 
-        // Стили для progressBara
-        panel.setBackground(Color.getHSBColor(6.5f, 0.30f, 0.6f));
-
-        incrementButton.setBackground(Color.getHSBColor(6.5f, 0.4f, 0.5f));
-        incrementButton.setForeground(Color.WHITE);
-        incrementButton.setFocusPainted(false);
-        incrementButton.setBorderPainted(false);
-
-        decrementButton.setBackground(Color.getHSBColor(6.5f, 0.4f, 0.5f));
-        decrementButton.setForeground(Color.WHITE);
-        decrementButton.setFocusPainted(false);
-        decrementButton.setBorderPainted(false);
-
-        slider.setBackground(Color.getHSBColor(6.5f, 0.30f, 0.6f));
-        slider.setForeground(Color.WHITE);
-
-        progressBar.setBackground(Color.darkGray);
-        progressBar.setForeground(Color.getHSBColor(6.5f, 0.4f, 0.5f));
-        progressBar.setStringPainted(true);
-        progressBar.setBorderPainted(true);
-
-
 
         // Создаем панель для элементов в EAST
         JPanel eastPanel = new JPanel(new GridLayout(3, 1, 0, 3)); // 3 строки, 1 столбец
@@ -145,10 +159,8 @@ public class MainForm implements IForm {
 
         // Добавляем панель с элементами в EAST
         mainPanel.add(eastPanel, BorderLayout.EAST);
+        mainPanel.add(experimentButtonsPanel, BorderLayout.NORTH);
 
-
-
-        mainMenu.add(mainPanel);
 
         labelOptionalInfo = new JPanel(new GridLayout(5, 1));
         labelOptionalInfo.setLayout(new BoxLayout(labelOptionalInfo, BoxLayout.Y_AXIS));
@@ -170,6 +182,8 @@ public class MainForm implements IForm {
         mainPanel.setBackground(Color.getHSBColor(6.5f, 0.30f, 0.6f));
         eastPanel.setBackground(Color.getHSBColor(6.5f, 0.30f, 0.6f));
         labelOptionalInfo.setBackground(Color.getHSBColor(6.5f, 0.30f, 0.6f)); // боковая панель с цифрами
+        experimentButtonsPanel.setBackground(Color.getHSBColor(6.5f, 0.30f, 0.6f));
+        panel.setBackground(Color.getHSBColor(6.5f, 0.30f, 0.6f));
 
         aboutMenuOpen.setBackground(Color.getHSBColor(6.5f, 0.4f, 0.5f));
         aboutMenuOpen.setForeground(Color.WHITE);
@@ -186,23 +200,40 @@ public class MainForm implements IForm {
         exitButtonMenu.setFocusPainted(false);
         exitButtonMenu.setBorderPainted(false);
 
+        startExperimentButton.setBackground(Color.getHSBColor(6.5f, 0.4f, 0.5f));
+        startExperimentButton.setForeground(Color.WHITE);
+        startExperimentButton.setFocusPainted(false);
+        startExperimentButton.setBorderPainted(false);
+
+        stopExperimentButton.setBackground(Color.getHSBColor(6.5f, 0.4f, 0.5f));
+        stopExperimentButton.setForeground(Color.WHITE);
+        stopExperimentButton.setFocusPainted(false);
+        stopExperimentButton.setBorderPainted(false);
+
+        slider.setBackground(Color.getHSBColor(6.5f, 0.30f, 0.6f));
+        slider.setForeground(Color.WHITE);
+
+        progressBar.setBackground(Color.darkGray);
+        progressBar.setForeground(Color.getHSBColor(6.5f, 0.4f, 0.5f));
+        progressBar.setStringPainted(true);
+        progressBar.setBorderPainted(true);
+
         mainMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainMenu.setLocationRelativeTo(null);
         mainMenu.setVisible(true);
     }
 
     /**
-     *
      * @param labelOptionalInfo наш panel со значениями
      * @see ExperimentMath класс для вычисления формулы
      */
     public void setupLabels(JPanel labelOptionalInfo) {
 
         try {
-            if (settings.getSelectedItem() == null){
+            if (settings.getSelectedItem() == null) {
                 throw new ValueNotSelectedException("Вы не выбрали значение!");
             }
-        } catch (ValueNotSelectedException e){
+        } catch (ValueNotSelectedException e) {
             return;
         }
 
@@ -240,6 +271,64 @@ public class MainForm implements IForm {
     }
 
 
+    class ThreadProvider{
+        private boolean isRunning = false;
+
+        // Метод для старта потока
+        public void startExperimentThread(Thread experimentThread) {
+            if (!isRunning) {
+                isRunning = true;
+                experimentThread = getExperimentThread();
+                experimentThread.start();
+            }
+        }
+
+        // Метод для остановки потока
+        public void stopExperimentThread(Thread experimentThread) {
+            isRunning = false;
+            if (experimentThread != null && experimentThread.isAlive()) {
+                experimentThread.interrupt();
+            }
+        }
+
+        public Thread getExperimentThread() {
+            Thread t1 = new Thread(() -> {
+                int min = progressBar.getValue();
+                Thread thread = Thread.currentThread();
+                try {
+                    for (int i = min; i <= progressBar.getMaximum(); i++) {
+                        if (!isRunning || thread.isInterrupted()){
+                            break;
+                        }
+                        Thread.sleep(100);
+
+                        progressBar.setValue(progressBar.getValue() + 1);
+                        setupLabels(labelOptionalInfo);
+                    }
+                } catch (Exception e) {
+
+                } finally {
+                    isRunning = false; // Устанавливаем флаг в false при завершении работы потока
+                }
+            });
+            return t1;
+        }
+
+        public boolean isRunning() {
+            return isRunning;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
     /**
      * Этот метод добавляет элемент в форму
      *
@@ -260,4 +349,5 @@ public class MainForm implements IForm {
         public ExitAction() {
         }
     }
+
 }
