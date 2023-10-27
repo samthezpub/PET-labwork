@@ -1,26 +1,17 @@
 package org.example;
 
-import java.math.RoundingMode;
 import java.text.DecimalFormat;
+
+import org.example.Forms.Settings;
 import org.example.Models.ExperimentEntity;
 
 public class ExperimentMath {
+    public static ExperimentEntity calculate(int temp, GasType gasType, double volume, float weight) {
+        String roundFormat = Settings.selectedRound;
     /*
                Шаблон для округления
-
-       Варианты:
-           "0.00" : 123.49 -> 123.50
-           "#.##" : 123.49 -> 123.5
-
-       Можно также увеличить кол-во нулей после запятой!
     */
-    private static final DecimalFormat df = new DecimalFormat("0.00");
-
-    // TODO сделать выбор формата округления в настройках
-
-
-
-    public static ExperimentEntity calculate(int temp, GasType gasType, double volume, float weight) {
+        final DecimalFormat df = new DecimalFormat(roundFormat);
 
 
         // Универсальная газовая постоянная в системе SI
