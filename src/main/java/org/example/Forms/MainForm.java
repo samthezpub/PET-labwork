@@ -142,11 +142,11 @@ public class MainForm implements IForm {
             }
         });
 
-        JPanel panel = new JPanel(new FlowLayout());
-        panel.add(progressBar);
-        panel.add(slider);
+        JPanel progressBarPanel = new JPanel(new FlowLayout());
+        progressBarPanel.add(progressBar);
+        progressBarPanel.add(slider);
 
-        mainPanel.add(panel, BorderLayout.SOUTH);
+        mainPanel.add(progressBarPanel, BorderLayout.SOUTH);
 
 
         // Создаем панель для элементов в EAST
@@ -178,13 +178,34 @@ public class MainForm implements IForm {
         /*
             Настройка цветов формы
          */
+        setupStylesPanels(eastPanel, experimentButtonsPanel, progressBarPanel);
+        setupStylesButtons(aboutMenuOpen,settingsMenuOpen,exitButtonMenu,startExperimentButton,stopExperimentButton);
+        setupProgressBar(slider);
+        
+    }
 
+    public void setupProgressBar(JSlider slider){
+        slider.setBackground(Color.getHSBColor(6.5f, 0.30f, 0.6f));
+        slider.setForeground(Color.WHITE);
+
+        progressBar.setBackground(Color.darkGray);
+        progressBar.setForeground(Color.getHSBColor(6.5f, 0.4f, 0.5f));
+        progressBar.setStringPainted(true);
+        progressBar.setBorderPainted(true);
+
+        mainMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainMenu.setLocationRelativeTo(null);
+        mainMenu.setVisible(true);
+    }
+    public void setupStylesPanels(JPanel eastPanel, JPanel experimentButtonsPanel, JPanel panel){
         mainPanel.setBackground(Color.getHSBColor(6.5f, 0.30f, 0.6f));
         eastPanel.setBackground(Color.getHSBColor(6.5f, 0.30f, 0.6f));
         labelOptionalInfo.setBackground(Color.getHSBColor(6.5f, 0.30f, 0.6f)); // боковая панель с цифрами
         experimentButtonsPanel.setBackground(Color.getHSBColor(6.5f, 0.30f, 0.6f));
         panel.setBackground(Color.getHSBColor(6.5f, 0.30f, 0.6f));
+    }
 
+    public void setupStylesButtons(JButton aboutMenuOpen, JButton settingsMenuOpen, JButton exitButtonMenu, JButton startExperimentButton, JButton stopExperimentButton) {
         aboutMenuOpen.setBackground(Color.getHSBColor(6.5f, 0.4f, 0.5f));
         aboutMenuOpen.setForeground(Color.WHITE);
         aboutMenuOpen.setFocusPainted(false);
@@ -210,17 +231,6 @@ public class MainForm implements IForm {
         stopExperimentButton.setFocusPainted(false);
         stopExperimentButton.setBorderPainted(false);
 
-        slider.setBackground(Color.getHSBColor(6.5f, 0.30f, 0.6f));
-        slider.setForeground(Color.WHITE);
-
-        progressBar.setBackground(Color.darkGray);
-        progressBar.setForeground(Color.getHSBColor(6.5f, 0.4f, 0.5f));
-        progressBar.setStringPainted(true);
-        progressBar.setBorderPainted(true);
-
-        mainMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainMenu.setLocationRelativeTo(null);
-        mainMenu.setVisible(true);
     }
 
     /**
