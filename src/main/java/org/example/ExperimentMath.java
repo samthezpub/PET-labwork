@@ -30,7 +30,7 @@ public class ExperimentMath {
                 df.format(a),
                 df.format(b),
                 df.format(R),
-                df.format(n),
+                df.format(weight),
                 df.format(P),
                 T
         );
