@@ -24,6 +24,7 @@ public class MainForm implements IForm {
     private final JPanel labelOptionalInfo;
 
     private Settings settings = new Settings();
+    private GasType gasType;
 
 
     public MainForm() {
@@ -122,7 +123,8 @@ public class MainForm implements IForm {
             public void actionPerformed(ActionEvent e) {
                 settings = new Settings();
                 settings.show();
-                if (settings.getSelectedItem() != null) {
+                if (settings.getSelectedVolume() != null && settings.getSelectedGas() != null) {
+                    gasType = settings.getSelectedGas();
                     changeLabels(labelOptionalInfo);
                     startExperimentButton.setEnabled(true);
                 }
@@ -256,7 +258,7 @@ public class MainForm implements IForm {
     public void changeLabels(JPanel labelOptionalInfo) {
 
         try {
-            if (settings.getSelectedItem() == null) {
+            if (settings.getSelectedGas().equals(null) || settings.getSelectedVolume().equals(null)) {
                 throw new ValueNotSelectedException("Вы не выбрали значение!");
             }
         } catch (ValueNotSelectedException e) {
@@ -268,7 +270,7 @@ public class MainForm implements IForm {
         labelOptionalInfo.removeAll();
 
         // Вычисляем по формуле
-        ExperimentEntity experiment = ExperimentMath.calculate(progressBar.getValue(), GasType.Argon, settings.getSelectedItem(), settings.getSelectedItem()); // Тестовое, пока нет форм с выбором
+        ExperimentEntity experiment = ExperimentMath.calculate(progressBar.getValue(), gasType, Double.valueOf(settings.getSelectedVolume()), Float.parseFloat(settings.getSelectedVolume())); // Тестовое, пока нет форм с выбором
 
 
 

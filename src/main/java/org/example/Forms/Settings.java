@@ -1,16 +1,22 @@
 package org.example.Forms;
 
+import lombok.Getter;
+import org.example.Enums.GasType;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
+import java.util.Arrays;
+import java.util.HashMap;
 
+@Getter
 public class Settings {
     private JDialog frame;
-    private Float selectedItem;
     public static String selectedRound; // а вообще так делать нельзя, не повторяйте моих ошибок
-
+    private String selectedVolume;
+    private GasType selectedGas;
 
 
     public Settings() {
@@ -41,6 +47,16 @@ public class Settings {
         JComboBox<String> volumeComboBox = new JComboBox<>(items);
         panel.add(volumeComboBox);
 
+        /*
+            Список газов
+         */
+
+        JLabel GasLabel = new JLabel("Выберите газ");
+        panel.add(GasLabel);
+
+        String[] items1 = {"Азот", "Аргон", "Кислород", "Неон", "Фтор", "Оксид азота", "Оксид углерода",};
+        JComboBox<String> gasComboBox = new JComboBox<>(items1);
+        panel.add(gasComboBox);
 
 
         /*
@@ -89,7 +105,12 @@ public class Settings {
                     default -> "#.############";
                 };
 
-                selectedItem = Float.parseFloat(selected);
+                selectedVolume = selected;
+
+                GasType gasType = Arrays.stream(GasType.values()).filter(v ->
+                        v.getTitle().equals(gasComboBox.getSelectedItem())).findFirst().get();
+                selectedGas = gasType;
+
                 frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
             }
         });
@@ -124,16 +145,16 @@ public class Settings {
 
         roundComboBox.setBackground(Color.getHSBColor(6.5f, 0.4f, 0.5f));
         roundComboBox.setForeground(Color.WHITE);
+
+        gasComboBox.setBackground(Color.getHSBColor(6.5f, 0.4f, 0.5f));
+        gasComboBox.setForeground(Color.WHITE);
+
     }
 
-    public Float getSelectedItem() {
-        return selectedItem;
-    }
-    public void setSelectedItem(float selectedItem) {
-        this.selectedItem = selectedItem;
-    }
 
-    public void show(){
+    public void show() {
         frame.setVisible(true);
     }
+
+
 }
