@@ -145,6 +145,10 @@ public class Settings {
 
         roundComboBox.setBackground(Color.getHSBColor(6.5f, 0.4f, 0.5f));
         roundComboBox.setForeground(Color.WHITE);
+
+        gasComboBox.setBackground(Color.getHSBColor(6.5f, 0.4f, 0.5f));
+        gasComboBox.setForeground(Color.WHITE);
+
     }
 
 
