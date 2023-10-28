@@ -1,17 +1,22 @@
 package org.example.Forms;
 
+import lombok.Getter;
+import org.example.Enums.GasType;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
+import java.util.Arrays;
 import java.util.HashMap;
 
+@Getter
 public class Settings {
     private JDialog frame;
     public static String selectedRound; // а вообще так делать нельзя, не повторяйте моих ошибок
-    private HashMap<String, String> selectedItems = new HashMap<>();
-
+    private String selectedVolume;
+    private GasType selectedGas;
 
 
     public Settings() {
@@ -49,7 +54,7 @@ public class Settings {
         JLabel GasLabel = new JLabel("Выберите газ");
         panel.add(GasLabel);
 
-        String[] items1 = {"Nitrogen", "Argon", "Oxygen", "Neon", "Fluorine", "NitrogenOxide", "CarbonOxide",};
+        String[] items1 = {"Азот", "Аргон", "Кислород", "Неон", "Фтор", "Оксид азота", "Оксид углерода",};
         JComboBox<String> gasComboBox = new JComboBox<>(items1);
         panel.add(gasComboBox);
 
@@ -100,9 +105,11 @@ public class Settings {
                     default -> "#.############";
                 };
 
+                selectedVolume = selected;
 
-                selectedItems.put("volume", selected);
-                selectedItems.put("gasType", (String) gasComboBox.getSelectedItem());
+                GasType gasType = Arrays.stream(GasType.values()).filter(v ->
+                        v.getTitle().equals(gasComboBox.getSelectedItem())).findFirst().get();
+                selectedGas = gasType;
 
                 frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
             }
@@ -141,11 +148,9 @@ public class Settings {
     }
 
 
-    public void show(){
+    public void show() {
         frame.setVisible(true);
     }
 
-    public HashMap<String, String> getSelectedItems() {
-        return selectedItems;
-    }
+
 }
