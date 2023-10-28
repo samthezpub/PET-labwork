@@ -2,6 +2,7 @@ package org.example;
 
 import java.text.DecimalFormat;
 
+import org.example.Enums.GasType;
 import org.example.Forms.Settings;
 import org.example.Models.ExperimentEntity;
 
@@ -30,7 +31,7 @@ public class ExperimentMath {
                 df.format(a),
                 df.format(b),
                 df.format(R),
-                df.format(n),
+                String.valueOf(n),
                 df.format(P),
                 T
         );
