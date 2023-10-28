@@ -5,11 +5,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
+import java.util.HashMap;
 
 public class Settings {
     private JDialog frame;
-    private Float selectedItem;
     public static String selectedRound; // а вообще так делать нельзя, не повторяйте моих ошибок
+    private HashMap<String, String> selectedItems = new HashMap<>();
 
 
 
@@ -41,6 +42,16 @@ public class Settings {
         JComboBox<String> volumeComboBox = new JComboBox<>(items);
         panel.add(volumeComboBox);
 
+        /*
+            Список газов
+         */
+
+        JLabel GasLabel = new JLabel("Выберите газ");
+        panel.add(GasLabel);
+
+        String[] items1 = {"Nitrogen", "Argon", "Oxygen", "Neon", "Fluorine", "NitrogenOxide", "CarbonOxide",};
+        JComboBox<String> gasComboBox = new JComboBox<>(items1);
+        panel.add(gasComboBox);
 
 
         /*
@@ -89,7 +100,10 @@ public class Settings {
                     default -> "#.############";
                 };
 
-                selectedItem = Float.parseFloat(selected);
+
+                selectedItems.put("volume", selected);
+                selectedItems.put("gasType", (String) gasComboBox.getSelectedItem());
+
                 frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
             }
         });
@@ -126,14 +140,12 @@ public class Settings {
         roundComboBox.setForeground(Color.WHITE);
     }
 
-    public Float getSelectedItem() {
-        return selectedItem;
-    }
-    public void setSelectedItem(float selectedItem) {
-        this.selectedItem = selectedItem;
-    }
 
     public void show(){
         frame.setVisible(true);
+    }
+
+    public HashMap<String, String> getSelectedItems() {
+        return selectedItems;
     }
 }
