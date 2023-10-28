@@ -61,6 +61,19 @@ public class MainForm implements IForm {
         JButton settingsMenuOpen = settingsMenu.build();
 
 
+
+        /*
+        Шкала
+         */
+        BoundedRangeModel model = new DefaultBoundedRangeModel(50, 0, 0, 300);
+
+        progressBar = new JProgressBar(model);
+        progressBar.setStringPainted(true);
+
+        JSlider slider = new JSlider(model);
+
+
+
         JPanel experimentButtonsPanel = new JPanel(new FlowLayout());
 
         final Thread experimentThread = null;
@@ -88,6 +101,7 @@ public class MainForm implements IForm {
             public void actionPerformed(ActionEvent e) {
                 stopExperimentButton.setEnabled(true);
                 startExperimentButton.setEnabled(false);
+                slider.setEnabled(false);
 
                 threadProvider.startExperimentThread(experimentThread);
             }
@@ -97,6 +111,7 @@ public class MainForm implements IForm {
             public void actionPerformed(ActionEvent e) {
                 stopExperimentButton.setEnabled(false);
                 startExperimentButton.setEnabled(true);
+                slider.setEnabled(true);
 
                 threadProvider.stopExperimentThread(experimentThread);
             }
@@ -118,15 +133,6 @@ public class MainForm implements IForm {
         experimentButtonsPanel.add(startExperimentButton);
         experimentButtonsPanel.add(stopExperimentButton);
 
-        /*
-        Шкала
-         */
-        BoundedRangeModel model = new DefaultBoundedRangeModel(50, 0, 0, 300);
-
-        progressBar = new JProgressBar(model);
-        progressBar.setStringPainted(true);
-
-        JSlider slider = new JSlider(model);
 
 
         model.addChangeListener(new ChangeListener() {
@@ -298,7 +304,12 @@ public class MainForm implements IForm {
 
         // Метод для старта потока
         public void startExperimentThread(Thread experimentThread) {
-            if (!isRunning) {
+            if(!isRunning && progressBar.getValue() == progressBar.getMaximum()){
+                progressBar.setValue(0);
+                isRunning = true;
+                experimentThread = getExperimentThread();
+                experimentThread.start();
+            } else if (!isRunning) {
                 isRunning = true;
                 experimentThread = getExperimentThread();
                 experimentThread.start();
