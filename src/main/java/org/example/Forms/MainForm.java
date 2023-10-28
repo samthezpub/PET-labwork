@@ -298,7 +298,12 @@ public class MainForm implements IForm {
 
         // Метод для старта потока
         public void startExperimentThread(Thread experimentThread) {
-            if (!isRunning) {
+            if(!isRunning && progressBar.getValue() == progressBar.getMaximum()){
+                progressBar.setValue(0);
+                isRunning = true;
+                experimentThread = getExperimentThread();
+                experimentThread.start();
+            } else if (!isRunning) {
                 isRunning = true;
                 experimentThread = getExperimentThread();
                 experimentThread.start();

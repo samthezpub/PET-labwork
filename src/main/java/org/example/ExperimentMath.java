@@ -37,7 +37,6 @@ public class ExperimentMath {
         );
 
 
-        return experimentEntity;// я обязательно сделаю вывод сразу в return, без этой переменной
-        // Я тебе верю, бро
+        return experimentEntity;
     }
 }
