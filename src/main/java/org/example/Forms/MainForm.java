@@ -34,6 +34,7 @@ public class MainForm implements IForm {
         mainMenu.setResizable(false);
 
 
+
         ButtonBuilder exitButton = new ButtonBuilder("Выйти");
         exitButton.addSize(150, 50);
         exitButton.addPosition(10, 400);
@@ -151,7 +152,7 @@ public class MainForm implements IForm {
         });
 
         JPanel progressBarPanel = new JPanel(new FlowLayout());
-        progressBarPanel.add(progressBar);
+//        progressBarPanel.add(progressBar);
         progressBarPanel.add(slider);
 
         mainPanel.add(progressBarPanel, BorderLayout.SOUTH);
