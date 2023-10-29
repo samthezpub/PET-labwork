@@ -4,7 +4,6 @@ import org.example.Builders.ButtonBuilder;
 import org.example.Exceptions.ValueNotSelectedException;
 import org.example.ExperimentMath;
 import org.example.Enums.GasType;
-import org.example.Interface.IForm;
 import org.example.Models.ExperimentEntity;
 
 import javax.swing.*;
@@ -14,7 +13,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainForm implements IForm {
+public class MainForm{
 
 
     private final JFrame mainMenu = new JFrame("Главное меню");
@@ -32,6 +31,7 @@ public class MainForm implements IForm {
         int y = 500;
         mainMenu.setSize(x, y);
         mainMenu.setResizable(false);
+
 
 
         ButtonBuilder exitButton = new ButtonBuilder("Выйти");
@@ -151,7 +151,7 @@ public class MainForm implements IForm {
         });
 
         JPanel progressBarPanel = new JPanel(new FlowLayout());
-        progressBarPanel.add(progressBar);
+//        progressBarPanel.add(progressBar);
         progressBarPanel.add(slider);
 
         mainPanel.add(progressBarPanel, BorderLayout.SOUTH);
@@ -364,7 +364,7 @@ public class MainForm implements IForm {
      * @param object Любой объект форм
      * @see Component компонент, от которого наследуются все объекты форм
      */
-    @Override
+
     public void addToFrame(Component object) {
         mainMenu.add(object);
     }
