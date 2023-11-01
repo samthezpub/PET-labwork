@@ -18,7 +18,7 @@ public class About {
         int x = 700;
         int y = 500;
         // Загрузка изображения
-        ImageIcon imageIcon = new ImageIcon("src/main/resources/about/about.png");
+        ImageIcon imageIcon = new ImageIcon(getClass().getResource("/about/about.png"));
 
         // Создание JLabel с изображением
         JLabel imageLabel = new JLabel(imageIcon);
