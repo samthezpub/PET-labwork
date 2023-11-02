@@ -251,6 +251,11 @@ public class MainForm{
         temperature.setFont(new Font(Font.DIALOG, Font.BOLD, 16));
     }
 
+    public static int ConvertInKelvin(int temperature) {
+        int kelv = temperature + 273;
+        return kelv;
+    }
+
     /**
      * @param labelOptionalInfo наш panel со значениями
      * @see ExperimentMath класс для вычисления формулы
@@ -270,7 +275,7 @@ public class MainForm{
         labelOptionalInfo.removeAll();
 
         // Вычисляем по формуле
-        ExperimentEntity experiment = ExperimentMath.calculate(progressBar.getValue(), gasType, Double.valueOf(settings.getSelectedVolume()), Float.parseFloat(settings.getSelectedVolume())); // Тестовое, пока нет форм с выбором
+        ExperimentEntity experiment = ExperimentMath.calculate(ConvertInKelvin(progressBar.getValue()), gasType, Double.valueOf(settings.getSelectedVolume()), Float.parseFloat(settings.getSelectedVolume())); // Тестовое, пока нет форм с выбором
 
 
 
