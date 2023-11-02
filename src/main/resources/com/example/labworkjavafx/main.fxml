@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="mainForm" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.labworkjavafx.MainFormController">
+    <children>
+        <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="640.0">
+            <menus>
+                <Menu mnemonicParsing="false" text="Эксперимент">
+                    <items>
+                        <MenuItem id="params_button" mnemonicParsing="false" onAction="#params_clicked" text="Параметры" />
+                        <MenuItem id="graphic_button" mnemonicParsing="false" onAction="#graphic_clicked" text="График" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Другое">
+                    <items>
+                        <MenuItem id="manual_button" mnemonicParsing="false" onAction="#manual_clicked" text="Методичка" />
+                        <MenuItem id="about_button" mnemonicParsing="false" onAction="#about_clicked" text="О программе" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <TableView layoutX="14.0" layoutY="266.0" prefHeight="200.0" prefWidth="275.0">
+            <columns>
+                <TableColumn prefWidth="108.0" text="Переменная" />
+                <TableColumn prefWidth="91.0" text="Значение" />
+                <TableColumn prefWidth="75.0" text="СИ" />
+            </columns>
+        </TableView>
+        <Button id="start_button" layoutX="14.0" layoutY="228.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Старт" />
+        <Button id="stop_button" layoutX="229.0" layoutY="228.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Стоп" />
+    </children>
+</AnchorPane>
