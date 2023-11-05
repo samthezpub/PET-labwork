@@ -7,7 +7,7 @@ import java.text.DecimalFormat;
 
 
 public class ExperimentMath {
-    public static ExperimentEntity calculate(GasTypeEnum gasType, double volume, int temp, String roundFormat) {
+    public static ExperimentEntity calculate(GasTypeEnum gasType, double volume, double temp, String roundFormat) {
         roundFormat = switch ((String) roundFormat) {
             case "2 знака после запятой" -> "#.##";
             case "3 знака после запятой" -> "#.###";
@@ -26,8 +26,8 @@ public class ExperimentMath {
 
         float a = gasType.getA(); // Константа a
         float b = gasType.getB(); // Константа b
-        float n = gasType.getMass(); // Количество молей
-        int T = temp; // Температура
+        float n = gasType.getMass() / R; // Количество молей
+        double T = temp; // Температура
         double P = ((n * R * T) / (volume - n * b)) - (n * n * a) / (volume * volume); //
 
         ExperimentEntity experimentEntity = new ExperimentEntity(
@@ -39,7 +39,7 @@ public class ExperimentMath {
                 df.format(R),
                 String.valueOf(n),
                 df.format(P),
-                T
+                df.format(T)
         );
 
 
