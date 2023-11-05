@@ -7,6 +7,7 @@ module com.example.labworkjavafx {
     requires net.synedra.validatorfx;
     requires org.kordamp.bootstrapfx.core;
     requires maven.model;
+    requires lombok;
 
     opens com.example.labworkjavafx to javafx.fxml;
     opens com.example.labworkjavafx.Models to javafx.base;
