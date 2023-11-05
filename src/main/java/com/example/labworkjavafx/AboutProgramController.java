@@ -54,11 +54,6 @@ public class AboutProgramController {
             String version = model.getVersion();
             String name = model.getName();
 
-            System.out.println("groupId: " + groupId);
-            System.out.println("artifactId: " + artifactId);
-            System.out.println("version: " + version);
-            System.out.println("name: " + name);
-
 
             List<AboutData> aboutDataList = new ArrayList<>();
             aboutDataList.add(new AboutData("Версия", version));
