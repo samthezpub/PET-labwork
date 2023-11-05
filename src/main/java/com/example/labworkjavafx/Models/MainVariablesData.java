@@ -2,16 +2,16 @@ package com.example.labworkjavafx.Models;
 
 public class MainVariablesData {
     private String variable;
-    private double value;
+    private String value;
     private String si;
 
     public MainVariablesData(String variable, String si) {
         this.variable = variable;
-        this.value = 0.0;
+        this.value = String.valueOf(0.0);
         this.si = si;
     }
 
-    public MainVariablesData(String variable, double value, String si) {
+    public MainVariablesData(String variable, String value, String si) {
         this.variable = variable;
         this.value = value;
         this.si = si;
@@ -25,11 +25,11 @@ public class MainVariablesData {
         this.variable = variable;
     }
 
-    public Double getValue() {
+    public String getValue() {
         return value;
     }
 
-    public void setValue(Double value) {
+    public void setValue(String value) {
         this.value = value;
     }
 

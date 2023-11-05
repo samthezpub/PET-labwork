@@ -16,7 +16,7 @@
             <menus>
                 <Menu mnemonicParsing="false" text="Эксперимент">
                     <items>
-                  <CheckMenuItem fx:id="paramsMenuItem" mnemonicParsing="false" text="Параметры" />
+                  <CheckMenuItem fx:id="paramsMenuItem" mnemonicParsing="false" onAction="#showParams" text="Параметры" />
                         <MenuItem id="graphic_button" mnemonicParsing="false" onAction="#graphic_clicked" text="График" />
                     </items>
                 </Menu>
@@ -24,6 +24,7 @@
                     <items>
                         <MenuItem id="manual_button" mnemonicParsing="false" onAction="#manual_clicked" text="Методичка" />
                         <MenuItem id="about_button" mnemonicParsing="false" onAction="#about_clicked" text="О программе" />
+                  <MenuItem mnemonicParsing="false" text="Настройки" />
                     </items>
                 </Menu>
             </menus>
