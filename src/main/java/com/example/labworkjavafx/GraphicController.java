@@ -1,12 +1,13 @@
 package com.example.labworkjavafx;
 
 import java.net.URL;
+import java.nio.channels.Selector;
 import java.util.ResourceBundle;
-
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
+import javafx.scene.control.Slider;
 
 public class GraphicController {
 
@@ -17,21 +18,38 @@ public class GraphicController {
     private URL location;
 
     @FXML
-    private Button refresh_button;
+    private LineChart<String, Number> graphic;
 
     @FXML
-    void abzabza(ActionEvent event) {
-        refresh_button.setText("abzabza");
+    private Slider temperatureSlider;
 
-
+    public void setTemperatureSlider(Slider temperatureSlider) {
+        this.temperatureSlider = temperatureSlider;
     }
 
+    void addGraphicPoint(){
+        temperatureSlider.getValue();
+
+        XYChart.Series<String, Number> series = graphic.getData().get(0);
+        series.setName("График изменений");
+
+        series.getData().add(new XYChart.Data<>("temp"+temperatureSlider.getValue(), 5.0));
+    }
 
     @FXML
     void initialize() {
-        assert refresh_button != null : "fx:id=\"refresh_button\" was not injected: check your FXML file 'graphic.fxml'.";
+        assert graphic != null : "fx:id=\"graphic\" was not injected: check your FXML file 'Untitled'.";
 
-        refresh_button.setOnAction(this::abzabza);
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.setName("График изменений");
+
+        series.getData().add(new XYChart.Data<>("temp", 2.0));
+        series.getData().add(new XYChart.Data<>("Category 2", 3.0));
+        series.getData().add(new XYChart.Data<>("Category 3", 5.0));
+
+
+
+        graphic.getData().add(series);
     }
 
 }
