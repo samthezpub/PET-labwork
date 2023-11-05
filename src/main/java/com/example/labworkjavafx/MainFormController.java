@@ -1,5 +1,6 @@
 package com.example.labworkjavafx;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,12 +17,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
-public class MainFormController {
+public class MainFormController extends Parent {
 
     @FXML
     private ResourceBundle resources;
@@ -66,7 +71,27 @@ public class MainFormController {
     @FXML
     void graphic_clicked(ActionEvent event) {
 
-    }
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("graphic.fxml"));
+            Parent childForm = null;
+            try {
+                childForm = fxmlLoader.load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            GraphicController controller = fxmlLoader.getController();
+            controller.setTemperatureSlider(temperatureSlider); // Передача Slider из родительской формы
+
+            Scene scene = new Scene(childForm, 640, 480); // Создание сцены для дочерней формы
+            Stage stage = new Stage();
+            stage.setTitle("График");
+            stage.setScene(scene);
+
+            // Отображение дочерней формы
+            stage.show();
+        }
+
+
 
     @FXML
     void manual_clicked(ActionEvent event) {
