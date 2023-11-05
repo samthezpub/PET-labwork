@@ -16,5 +16,5 @@ public class ExperimentEntity {
     private String gasConstantR;
     private String weight;
     private String pressure;
-    private int temperature;
+    private String temperature;
 }
