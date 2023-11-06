@@ -1,6 +1,11 @@
 package com.example.labworkjavafx;
 
+
+
+
 import java.io.FileReader;
+import java.io.IOException;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,10 +17,12 @@ import com.example.labworkjavafx.Models.AboutData;
 import com.example.labworkjavafx.Models.ExperimentEntity;
 import com.example.labworkjavafx.Models.MainVariablesData;
 import com.example.labworkjavafx.Utils.ExperimentMath;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
@@ -23,8 +30,17 @@ import javafx.scene.layout.AnchorPane;
 import lombok.SneakyThrows;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
-public class MainFormController {
+
+public class MainFormController extends Parent {
 
     @FXML
     private ResourceBundle resources;
@@ -33,12 +49,21 @@ public class MainFormController {
     private URL location;
 
     @FXML
+    private Button start_button;
+
+    @FXML
+    private Button stop_button;
+
+    @FXML
     private ChoiceBox<GasTypeEnum> gasTypeChoiseBox;
 
     @FXML
     private ChoiceBox<Double> volumeChoiseBox;
     @FXML
     private ChoiceBox<String> roundChoiseBox;
+
+    @FXML
+    private Slider temperatureSlider;
 
     @FXML
     private AnchorPane paramsSettings;
@@ -51,8 +76,8 @@ public class MainFormController {
     private TableView<MainVariablesData> variablesTable;
 
 
+    private MyThread thread = null;
 
-    @SneakyThrows
     @FXML
     void about_clicked(ActionEvent event) {
         // тут должна быть форма, но я пока впихну диалоговое окно
@@ -75,13 +100,56 @@ public class MainFormController {
     @FXML
     void graphic_clicked(ActionEvent event) {
 
-    }
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("graphic.fxml"));
+            Parent childForm = null;
+            try {
+                childForm = fxmlLoader.load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            GraphicController controller = fxmlLoader.getController();
+            controller.setTemperatureSlider(temperatureSlider); // Передача Slider из родительской формы
+
+            Scene scene = new Scene(childForm, 640, 480); // Создание сцены для дочерней формы
+            Stage stage = new Stage();
+            stage.setTitle("График");
+            stage.setScene(scene);
+
+            // Отображение дочерней формы
+            stage.show();
+        }
+
+
 
     @FXML
     void manual_clicked(ActionEvent event) {
 
     }
 
+    class MyThread extends Thread {
+        public void run() {
+            try {
+                for (int i = 0; i < temperatureSlider.getMax()-1; i++) {
+                    if (temperatureSlider.getValue() >= 500){
+                        Platform.runLater(() -> {
+                            start_button.setDisable(false);
+                            stop_button.setDisable(true);
+                        });
+                        this.interrupt();
+                        return;
+                    }
+                    sleep(100);
+                    temperatureSlider.setValue(temperatureSlider.getValue() + 1);
+                    changeTableValues();
+
+                }
+            } catch (InterruptedException e) {
+
+            }
+
+        }
+    }
 
 
     @FXML
@@ -96,37 +164,49 @@ public class MainFormController {
 
 
     @FXML
+    void startButton_clicked(ActionEvent event) {
+        start_button.setDisable(true);
+        stop_button.setDisable(false);
+
+        thread = new MyThread();
+        thread.start();
+    }
+
+    @FXML
+    void stopButton_clicked(ActionEvent event) {
+        start_button.setDisable(false);
+        stop_button.setDisable(true);
+
+        thread.interrupt();
+    }
+
+    @FXML
+    void temperatureSlider_drag(MouseEvent event) {
+
+    }
+
+
+    @FXML
     void showParams(ActionEvent event) {
         paramsSettings.setVisible(paramsMenuItem.isSelected());
     }
 
     @FXML
     void initialize() {
-
+        paramsSettings.setVisible(true);
+        paramsMenuItem.setSelected(true);
         paramsMenuItem.setOnAction(this::showParams);
 
+        start_button.setDisable(false);
+        start_button.setOnAction(this::startButton_clicked);
+        stop_button.setOnAction(this::stopButton_clicked);
+
+        initialiseTemperatureSlider();
         initializeChoiseboxes();
         initializeTable();
 
     }
 
-    private void changeTableValues() {
-
-        ExperimentEntity experimentEntity = ExperimentMath.calculate(gasTypeChoiseBox.getValue(), volumeChoiseBox.getValue(), 10, roundChoiseBox.getValue());
-
-        ArrayList<MainVariablesData> variables = new ArrayList<>(10);
-        variables.add(new MainVariablesData("m", "г/моль"));
-        variables.add(new MainVariablesData("Газ", experimentEntity.getGasName(), ""));
-        variables.add(new MainVariablesData("Объем", experimentEntity.getVolume(), "л"));
-        variables.add(new MainVariablesData("Универсальная газовая константа", experimentEntity.getGasConstantR(), "Дж/(Кг*моль)"));
-        variables.add(new MainVariablesData("Масса", experimentEntity.getWeight(), "кг"));
-        variables.add(new MainVariablesData("Давление", experimentEntity.getPressure(), "Па"));
-        variables.add(new MainVariablesData("Температура", String.valueOf(experimentEntity.getTemperature()), "К"));
-
-        ObservableList<MainVariablesData> mainVariablesData = FXCollections.observableArrayList(variables);
-        variablesTable.setItems(mainVariablesData);
-
-    }
 
     /**
      * Этот метод отвечает за инициализацию всех ChoiseBox'ов на форме
@@ -162,6 +242,51 @@ public class MainFormController {
         ));
 
         roundChoiseBox.setValue(roundChoiseBox.getItems().get(random.nextInt(0, roundChoiseBox.getItems().size())));
+
+        gasTypeChoiseBox.setOnAction(this::changeTableValues);
+        volumeChoiseBox.setOnAction(this::changeTableValues);
+        roundChoiseBox.setOnAction(this::changeTableValues);
+
+    }
+
+
+    private void changeTableValues(ActionEvent actionEvent) {
+
+        ExperimentEntity experimentEntity = ExperimentMath.calculate(gasTypeChoiseBox.getValue(), volumeChoiseBox.getValue(), temperatureSlider.getValue(), roundChoiseBox.getValue());
+
+        setTableValues(experimentEntity);
+    }
+
+    private void setTableValues(ExperimentEntity experimentEntity) {
+        ArrayList<MainVariablesData> variables = new ArrayList<>(10);
+        variables.add(new MainVariablesData("m", "г/моль"));
+        variables.add(new MainVariablesData("Газ", experimentEntity.getGasName(), gasTypeChoiseBox.getValue().getChemical()));
+        variables.add(new MainVariablesData("Объем", experimentEntity.getVolume(), "л"));
+        variables.add(new MainVariablesData("Универсальная газовая константа", experimentEntity.getGasConstantR(), "Дж/(Кг*моль)"));
+        variables.add(new MainVariablesData("Масса", experimentEntity.getWeight(), "кг"));
+        variables.add(new MainVariablesData("Давление", experimentEntity.getPressure(), "Па"));
+        variables.add(new MainVariablesData("Температура", String.valueOf(experimentEntity.getTemperature()), "К"));
+
+        ObservableList<MainVariablesData> mainVariablesData = FXCollections.observableArrayList(variables);
+        variablesTable.setItems(mainVariablesData);
+
+    }
+
+    private void changeTableValues(MouseEvent actionEvent) {
+
+        ExperimentEntity experimentEntity = ExperimentMath.calculate(gasTypeChoiseBox.getValue(), volumeChoiseBox.getValue(), temperatureSlider.getValue(), roundChoiseBox.getValue());
+
+        setTableValues(experimentEntity);
+    }
+
+    private void changeTableValues() {
+        ExperimentEntity experimentEntity = ExperimentMath.calculate(gasTypeChoiseBox.getValue(), volumeChoiseBox.getValue(), temperatureSlider.getValue(), roundChoiseBox.getValue());
+
+        setTableValues(experimentEntity);
+    }
+
+    private void initialiseTemperatureSlider() {
+        temperatureSlider.setOnMouseDragged(this::changeTableValues);
     }
 
     /**
@@ -190,5 +315,6 @@ public class MainFormController {
         variablesTable.getColumns().addAll(nameColumn, valueColumn, si);
 
         changeTableValues();
+
     }
 }
