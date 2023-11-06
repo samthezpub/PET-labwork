@@ -1,5 +1,6 @@
 package com.example.labworkjavafx;
 
+import java.io.FileReader;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,12 +16,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckMenuItem;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import lombok.SneakyThrows;
+import org.apache.maven.model.Model;
+import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
 
 public class MainFormController {
 
@@ -48,9 +50,26 @@ public class MainFormController {
     @FXML
     private TableView<MainVariablesData> variablesTable;
 
+
+
+    @SneakyThrows
     @FXML
     void about_clicked(ActionEvent event) {
+        // тут должна быть форма, но я пока впихну диалоговое окно
+        MavenXpp3Reader reader = new MavenXpp3Reader();
+        Model model = reader.read(new FileReader("pom.xml"));
 
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("О программе");
+        alert.setHeaderText(null);
+
+        alert.setContentText("Имя: " + model.getName() + "\n"
+                + "Версия: " + model.getVersion() + "\n"
+                + "Авторы: " + "Java-прогеры" + "\n");
+
+        alert.setGraphic(new ImageView(this.getClass().getResource("/pictures/aboutlogo.png").toString()));
+
+        alert.showAndWait();
     }
 
     @FXML
@@ -60,6 +79,18 @@ public class MainFormController {
 
     @FXML
     void manual_clicked(ActionEvent event) {
+
+    }
+
+
+
+    @FXML
+    void start_clicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void stop_clicked(ActionEvent event) {
 
     }
 
