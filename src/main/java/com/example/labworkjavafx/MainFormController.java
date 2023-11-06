@@ -40,6 +40,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 
+
 public class MainFormController extends Parent {
 
     @FXML
@@ -78,11 +79,19 @@ public class MainFormController extends Parent {
 
     private MyThread thread = null;
 
+
     @FXML
     void about_clicked(ActionEvent event) {
         // тут должна быть форма, но я пока впихну диалоговое окно
         MavenXpp3Reader reader = new MavenXpp3Reader();
-        Model model = reader.read(new FileReader("pom.xml"));
+        Model model = null;
+        try {
+            model = reader.read(new FileReader("pom.xml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("О программе");

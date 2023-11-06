@@ -40,11 +40,11 @@
             </menus>
         </MenuBar>
 
-        <Button id="start_button" layoutX="14.0" layoutY="248.0" mnemonicParsing="false" onAction="#start_clicked" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: ffffff;" text="Старт">
+        <Button fx:id="start_button" layoutX="14.0" layoutY="248.0" mnemonicParsing="false" onAction="#start_clicked" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: ffffff;" text="Старт">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-        <Button id="stop_button" layoutX="314.0" layoutY="248.0" mnemonicParsing="false" onAction="#stop_clicked" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: ffffff;" text="Стоп">
+        <Button fx:id="stop_button" layoutX="314.0" layoutY="248.0" mnemonicParsing="false" onAction="#stop_clicked" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: ffffff;" text="Стоп">
 
          <cursor>
             <Cursor fx:constant="HAND" />
