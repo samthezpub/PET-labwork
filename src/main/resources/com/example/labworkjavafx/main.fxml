@@ -19,7 +19,7 @@
     <children>
       <ImageView fitHeight="500.0" fitWidth="700.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../pictures/main/main.png" />
+            <Image url="@../../../pictures/main.png" />
          </image>
       </ImageView>
         <MenuBar layoutX="-8.0" prefHeight="25.0" prefWidth="708.0" style="-fx-background-color: ffffff;">
@@ -39,11 +39,13 @@
                 </Menu>
             </menus>
         </MenuBar>
-        <Button id="start_button" fx:id="start_button" disable="true" layoutX="14.0" layoutY="248.0" mnemonicParsing="false" onAction="#startButton_clicked" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: ffffff;" text="Старт">
+
+        <Button id="start_button" layoutX="14.0" layoutY="248.0" mnemonicParsing="false" onAction="#start_clicked" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: ffffff;" text="Старт">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-        <Button id="stop_button" fx:id="stop_button" disable="true" layoutX="314.0" layoutY="248.0" mnemonicParsing="false" onAction="#stopButton_clicked" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: ffffff;" text="Стоп">
+        <Button id="stop_button" layoutX="314.0" layoutY="248.0" mnemonicParsing="false" onAction="#stop_clicked" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: ffffff;" text="Стоп">
+
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
