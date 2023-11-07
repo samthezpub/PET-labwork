@@ -76,8 +76,11 @@ public class MainFormController extends Parent {
     @FXML
     private TableView<MainVariablesData> variablesTable;
 
-
+    private Parent root;
     private MyThread thread = null;
+    private Stage graphicStage;
+
+    private GraphicController graphicController;
 
 
     @FXML
@@ -109,26 +112,32 @@ public class MainFormController extends Parent {
     @FXML
     void graphic_clicked(ActionEvent event) {
 
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("graphic.fxml"));
-            Parent childForm = null;
-            try {
-                childForm = fxmlLoader.load();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            GraphicController controller = fxmlLoader.getController();
-            controller.setTemperatureSlider(temperatureSlider); // Передача Slider из родительской формы
 
-            Scene scene = new Scene(childForm, 640, 480); // Создание сцены для дочерней формы
-            Stage stage = new Stage();
-            stage.setTitle("График");
-            stage.setScene(scene);
+        graphicStage.show();
 
-            // Отображение дочерней формы
-            stage.show();
+    }
+
+    private void initializeGraphicForm() {
+
+
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("graphic.fxml"));
+        try {
+            root = fxmlLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
 
+        graphicController = fxmlLoader.getController();
+
+
+        Scene scene = new Scene(root, 640, 480); // Создание сцены для дочерней формы
+        Stage stage = new Stage();
+        stage.setTitle("График");
+        stage.setScene(scene);
+
+        graphicStage = stage;
+    }
 
 
     @FXML
@@ -149,6 +158,9 @@ public class MainFormController extends Parent {
                         return;
                     }
                     sleep(100);
+
+                    int pressure = 100+i;
+                    graphicController.addGraphicPoint((int) temperatureSlider.getValue(), pressure);
                     temperatureSlider.setValue(temperatureSlider.getValue() + 1);
                     changeTableValues();
 
@@ -213,6 +225,7 @@ public class MainFormController extends Parent {
         initialiseTemperatureSlider();
         initializeChoiseboxes();
         initializeTable();
+        initializeGraphicForm();
 
     }
 
