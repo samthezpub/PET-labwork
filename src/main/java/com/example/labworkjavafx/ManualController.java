@@ -7,8 +7,19 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class ManualController {
+
+    @FXML
+    private ResourceBundle resources;
+
+    @FXML
+    private URL location;
+
+
+
     @FXML
     void openLink1(ActionEvent event) throws URISyntaxException, IOException {
         Desktop.getDesktop().browse(new URI("https://www.chem.msu.su/rus/teaching/realgases/chap1%283%29.html?ysclid=lon8u593gk566547179"));
@@ -22,5 +33,10 @@ public class ManualController {
     @FXML
     void openLink3(ActionEvent event) throws URISyntaxException, IOException {
         Desktop.getDesktop().browse(new URI("https://portal.tpu.ru/SHARED/e/ELENALIS/rabota/Tab4/Lk21.pdf"));
+    }
+
+    @FXML
+    void initialize() {
+
     }
 }

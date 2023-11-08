@@ -8,11 +8,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.labworkjavafx.ManualController">
+<ScrollPane fx:id="scroll_pane" hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pannable="true" prefHeight="480.0" prefWidth="640.0" vbarPolicy="ALWAYS" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.labworkjavafx.ManualController">
   <content>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1572.0" prefWidth="640.0" style="-fx-background-color: #DFDFDF;">
+    <AnchorPane blendMode="SRC_ATOP" minHeight="0.0" minWidth="0.0" prefHeight="1572.0" prefWidth="640.0" style="-fx-background-color: #DFDFDF;">
          <children>
-            <ImageView fitHeight="277.0" fitWidth="367.0" layoutX="16.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="277.0" fitWidth="367.0" layoutX="16.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true" focusTraversable="true">
                <image>
                   <Image url="@../../../pictures/manual/Van der Waals equation.png" />
                </image>
@@ -47,32 +47,32 @@
                   <Font name="Georgia" size="18.0" />
                </font>
             </Text>
-            <Text layoutX="10.0" layoutY="1369.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Для более подробной информации рекомендуется перейти на следующие источники:" textAlignment="JUSTIFY" wrappingWidth="607.13671875">
+            <Text layoutX="10.0" layoutY="1369.0" focusTraversable="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Для более подробной информации рекомендуется перейти на следующие источники:" textAlignment="JUSTIFY" wrappingWidth="607.13671875">
                <font>
                   <Font name="Georgia" size="18.0" />
                </font>
             </Text>
-            <Text layoutX="12.0" layoutY="1434.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1.&#10;&#10;2.&#10;&#10;3.&#10;">
+            <Text layoutX="12.0" layoutY="1434.0" focusTraversable="false" strokeType="OUTSIDE" strokeWidth="0.0" text="1.&#10;&#10;2.&#10;&#10;3.&#10;">
                <font>
                   <Font size="16.0" />
                </font>
             </Text>
-            <Hyperlink layoutX="32.0" layoutY="1459.0" onAction="#openLink2" prefHeight="23.0" prefWidth="464.0" text="https://www.chem-astu.ru/chair/study/physics-part1/?p=198">
+            <Hyperlink layoutX="32.0" focusTraversable="false" layoutY="1459.0" onAction="#openLink2" prefHeight="23.0" prefWidth="464.0" text="https://www.chem-astu.ru/chair/study/physics-part1/?p=198">
                <font>
                   <Font size="15.0" />
                </font>
             </Hyperlink>
-            <Hyperlink layoutX="32.0" layoutY="1498.0" onAction="#openLink3" prefHeight="23.0" prefWidth="563.0" text="https://portal.tpu.ru/SHARED/e/ELENALIS/rabota/Tab4/Lk21.pdf">
+            <Hyperlink focusTraversable="false" layoutX="32.0" layoutY="1498.0" onAction="#openLink3" prefHeight="23.0" prefWidth="563.0" text="https://portal.tpu.ru/SHARED/e/ELENALIS/rabota/Tab4/Lk21.pdf">
                <font>
                   <Font size="15.0" />
                </font>
             </Hyperlink>
-            <Hyperlink layoutX="32.0" layoutY="1404.0" onAction="#openLink1" prefHeight="49.0" prefWidth="640.0" text="https://www.chem.msu.su/rus/teaching/realgases/chap1%283%29.html?ysclid">
+            <Hyperlink focusTraversable="false" layoutX="32.0" layoutY="1404.0" onAction="#openLink1" prefHeight="49.0" prefWidth="640.0" text="https://www.chem.msu.su/rus/teaching/realgases/chap1%283%29.html?ysclid">
                <font>
                   <Font size="16.0" />
                </font>
             </Hyperlink>
-            <Text layoutX="16.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Для проверки уравнения Ван-дер-Ваальса, вам понадобится убедиться, что оно правильно описывает поведение реальных газов. Уравнение ван-дер-Ваальса является уравнением состояния газов и имеет следующий вид:" textAlignment="JUSTIFY" wrappingWidth="607.13671875">
+            <Text focusTraversable="true" layoutX="16.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Для проверки уравнения Ван-дер-Ваальса, вам понадобится убедиться, что оно правильно описывает поведение реальных газов. Уравнение ван-дер-Ваальса является уравнением состояния газов и имеет следующий вид:" textAlignment="JUSTIFY" wrappingWidth="607.13671875">
                <font>
                   <Font name="Georgia" size="18.0" />
                </font>

@@ -151,7 +151,7 @@ public class MainFormController extends Parent {
             stage.setScene(new Scene(root1));
             stage.show();
         } catch (Exception e) {
-            System.out.println("Невозможно создать новое окно");
+            System.out.println(e.getMessage());
         }
     }
 
