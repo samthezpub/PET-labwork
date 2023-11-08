@@ -82,6 +82,12 @@ public class MainFormController extends Parent {
 
     private GraphicController graphicController;
 
+    @FXML
+    private Label pressure_display;
+
+    @FXML
+    private Label temperature_display;
+
 
     @FXML
     void about_clicked(ActionEvent event) {
