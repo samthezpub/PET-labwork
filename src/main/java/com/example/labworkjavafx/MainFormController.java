@@ -133,7 +133,16 @@ public class MainFormController extends Parent {
 
     @FXML
     void manual_clicked(ActionEvent event) {
-
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("manual.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Методичка");
+            stage.setScene(new Scene(root1));
+            stage.show();
+        } catch (Exception e) {
+            System.out.println("Невозможно создать новое окно");
+        }
     }
 
     class MyThread extends Thread {

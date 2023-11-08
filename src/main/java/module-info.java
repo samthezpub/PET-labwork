@@ -12,4 +12,6 @@ module com.example.labworkjavafx {
     opens com.example.labworkjavafx to javafx.fxml;
     opens com.example.labworkjavafx.Models to javafx.base;
     exports com.example.labworkjavafx;
+
+    requires java.desktop;
 }

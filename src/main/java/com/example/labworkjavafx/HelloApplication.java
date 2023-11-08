@@ -14,6 +14,7 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("main.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 700, 500);
         stage.setTitle("Проверка уравнения Ван-дер-Вальса");
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
