@@ -137,7 +137,7 @@ public class MainFormController extends Parent {
         graphicController = fxmlLoader.getController();
 
 
-        Scene scene = new Scene(root, 640, 480); // Создание сцены для дочерней формы
+        Scene scene = new Scene(root, 700, 500); // Создание сцены для дочерней формы
         Stage stage = new Stage();
         stage.setTitle("График");
         stage.setScene(scene);
@@ -208,6 +208,10 @@ public class MainFormController extends Parent {
     void startButton_clicked(ActionEvent event) {
         start_button.setDisable(true);
         stop_button.setDisable(false);
+
+        if (temperatureSlider.getValue() == temperatureSlider.getMax()){
+            temperatureSlider.setValue(0);
+        }
 
         thread = new MyThread();
         thread.start();
