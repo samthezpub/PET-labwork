@@ -322,6 +322,19 @@ public class MainFormController extends Parent {
         ExperimentEntity experimentEntity = ExperimentMath.calculate(gasTypeChoiseBox.getValue(), volumeChoiseBox.getValue(), temperatureSlider.getValue(), roundChoiseBox.getValue());
 
         setTableValues(experimentEntity);
+
+
+        /*
+            Поток для изменения label на аппарате
+        */
+        Thread backgroundThread = new Thread(() -> {
+            Platform.runLater(() -> {
+                pressure_display.setText(experimentEntity.getPressure());
+                temperature_display.setText(experimentEntity.getTemperature());
+            });
+        });
+
+        backgroundThread.start();
     }
 
     private void initialiseTemperatureSlider() {
