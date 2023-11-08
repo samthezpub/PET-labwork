@@ -171,6 +171,8 @@ public class MainFormController extends Parent {
                 for (int i = 0; i < temperatureSlider.getMax()-1; i++) {
                     if (temperatureSlider.getValue() >= 500){
                         Platform.runLater(() -> {
+                            start_button.setText("Сначала");
+
                             start_button.setDisable(false);
                             stop_button.setDisable(true);
                         });
@@ -183,7 +185,6 @@ public class MainFormController extends Parent {
                     graphicController.addGraphicPoint((int) temperatureSlider.getValue(), pressure);
                     temperatureSlider.setValue(temperatureSlider.getValue() + 1);
                     changeTableValues();
-
                 }
             } catch (InterruptedException e) {
 
@@ -212,6 +213,8 @@ public class MainFormController extends Parent {
         if (temperatureSlider.getValue() == temperatureSlider.getMax()){
             temperatureSlider.setValue(0);
         }
+
+        start_button.setText("Продолжить");
 
         thread = new MyThread();
         thread.start();
@@ -330,6 +333,7 @@ public class MainFormController extends Parent {
         ExperimentEntity experimentEntity = ExperimentMath.calculate(gasTypeChoiseBox.getValue(), volumeChoiseBox.getValue(), temperatureSlider.getValue(), roundChoiseBox.getValue());
 
         setTableValues(experimentEntity);
+
 
 
         /*
