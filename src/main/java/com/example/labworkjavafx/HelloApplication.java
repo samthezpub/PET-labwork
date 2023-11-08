@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.FileReader;
 import java.io.IOException;
 
 public class HelloApplication extends Application {
@@ -15,6 +16,7 @@ public class HelloApplication extends Application {
         stage.setTitle("Проверка уравнения Ван-дер-Вальса");
         stage.setResizable(false);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
