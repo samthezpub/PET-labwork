@@ -14,12 +14,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<?import javafx.scene.Cursor?>
-<AnchorPane id="mainForm" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.labworkjavafx.MainFormController">
+<AnchorPane id="mainForm" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.labworkjavafx.MainFormController">
     <children>
       <ImageView fitHeight="500.0" fitWidth="700.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../pictures/main.png" />
+            <Image url="@../../../pictures/main/main.png" />
          </image>
       </ImageView>
         <MenuBar layoutX="-8.0" prefHeight="25.0" prefWidth="708.0" style="-fx-background-color: ffffff;">
@@ -40,11 +39,11 @@
             </menus>
         </MenuBar>
 
-        <Button fx:id="start_button" layoutX="14.0" layoutY="248.0" mnemonicParsing="false" onAction="#start_clicked" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: ffffff;" text="Старт">
+        <Button fx:id="start_button" layoutX="385.0" layoutY="460.0" mnemonicParsing="false" onAction="#start_clicked" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: ffffff;" text="Старт">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-        <Button fx:id="stop_button" layoutX="314.0" layoutY="248.0" mnemonicParsing="false" onAction="#stop_clicked" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: ffffff;" text="Стоп">
+        <Button fx:id="stop_button" layoutX="625.0" layoutY="460.0" mnemonicParsing="false" onAction="#stop_clicked" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: ffffff;" text="Стоп">
 
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -72,6 +71,9 @@
                </cursor></ChoiceBox>
          </children>
       </AnchorPane>
-        <Slider fx:id="temperatureSlider" layoutX="118.0" layoutY="229.0" max="500.0" showTickMarks="true" snapToTicks="true" value="20.0" />
+        <Slider fx:id="temperatureSlider" layoutX="465.0" layoutY="460.0" max="500.0" showTickMarks="true" snapToTicks="true" value="20.0">
+         <cursor>
+            <Cursor fx:constant="H_RESIZE" />
+         </cursor></Slider>
     </children>
 </AnchorPane>

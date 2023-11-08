@@ -114,6 +114,7 @@ public class MainFormController extends Parent {
 
 
         graphicStage.show();
+        graphicStage.setResizable(false);
 
     }
 
@@ -225,6 +226,7 @@ public class MainFormController extends Parent {
     void initialize() {
         paramsSettings.setVisible(true);
         paramsMenuItem.setSelected(true);
+        stop_button.setDisable(true); // отключаем для избежания лишних ошибок
         paramsMenuItem.setOnAction(this::showParams);
 
         start_button.setDisable(false);
