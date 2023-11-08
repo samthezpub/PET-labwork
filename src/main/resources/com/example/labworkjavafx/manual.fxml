@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.labworkjavafx.MainFormController">
+  <content>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1572.0" prefWidth="640.0" style="-fx-background-color: #DFDFDF;">
+         <children>
+            <ImageView fitHeight="277.0" fitWidth="367.0" layoutX="16.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../pictures/manual/Van der Waals equation.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="16.0" layoutY="396.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Чтобы проверить как, уравнение Ван-дер-Ваальса описывает поведение конкретного газа, нужно выполнить следующие шаги:&#10;&#10;1. Знать константы a и b для этого газа. Эти константы зависят от молекулярной структуры газа.&#10;&#10;2. Иметь значения P, V, n, T для конкретных условий. Обычно, это значения давления, объема, количества молей и температуры в системе с газом.&#10;&#10;3. Подставить все значения в уравнение Ван-дер-Ваальса и убедиться, что уравнение выполняется. То есть, левая часть уравнения должна быть равна правой части.&#10;&#10;Обратите внимание, что уравнение Ван-дер-Ваальса является упрощенной моделью и не всегда точно описывает поведение реальных газов, особенно в экстремальных условиях.&#10;&#10;Производная давления газа по времени при постоянном объёме определяется по формуле:" textAlignment="JUSTIFY" wrappingWidth="607.13671875">
+               <font>
+                  <Font name="Georgia" size="18.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="18.0" layoutY="807.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../pictures/manual/derivative of gas pressure.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="18.0" layoutY="999.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Константу a можно определить по уравнению:">
+               <font>
+                  <Font name="Georgia" size="18.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="155.0" fitWidth="260.0" layoutX="18.0" layoutY="1015.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../pictures/manual/const a.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="1207.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../pictures/manual/const b.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="13.0" layoutY="1190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Константу b можно рассчитать по формуле: ">
+               <font>
+                  <Font name="Georgia" size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="10.0" layoutY="1369.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Для более подробной информации рекомендуется перейти на следующие источники:" textAlignment="JUSTIFY" wrappingWidth="607.13671875">
+               <font>
+                  <Font name="Georgia" size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="12.0" layoutY="1434.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1.&#10;&#10;2.&#10;&#10;3.&#10;">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <Hyperlink layoutX="32.0" layoutY="1459.0" onAction="#openLink2" prefHeight="23.0" prefWidth="464.0" text="https://www.chem-astu.ru/chair/study/physics-part1/?p=198">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Hyperlink>
+            <Hyperlink layoutX="32.0" layoutY="1498.0" onAction="#openLink3" prefHeight="23.0" prefWidth="563.0" text="https://portal.tpu.ru/SHARED/e/ELENALIS/rabota/Tab4/Lk21.pdf">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Hyperlink>
+            <Hyperlink layoutX="32.0" layoutY="1404.0" onAction="#openLink1" prefHeight="49.0" prefWidth="640.0" text="https://www.chem.msu.su/rus/teaching/realgases/chap1%283%29.html?ysclid">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Hyperlink>
+            <Text layoutX="16.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Для проверки уравнения Ван-дер-Ваальса, вам понадобится убедиться, что оно правильно описывает поведение реальных газов. Уравнение ван-дер-Ваальса является уравнением состояния газов и имеет следующий вид:" textAlignment="JUSTIFY" wrappingWidth="607.13671875">
+               <font>
+                  <Font name="Georgia" size="18.0" />
+               </font>
+            </Text>
+         </children></AnchorPane>
+  </content>
+</ScrollPane>

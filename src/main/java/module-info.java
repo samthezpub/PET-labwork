@@ -9,4 +9,6 @@ module com.example.labworkjavafx {
 
     opens com.example.labworkjavafx to javafx.fxml;
     exports com.example.labworkjavafx;
+
+    requires java.desktop;
 }
