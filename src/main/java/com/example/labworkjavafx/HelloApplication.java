@@ -3,6 +3,8 @@ package com.example.labworkjavafx;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.FileReader;
@@ -18,6 +20,9 @@ public class HelloApplication extends Application {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
+
+        // Устанавливает иконку
+        stage.getIcons().add(new Image(this.getClass().getResourceAsStream("/pictures/aboutlogo.png")));
     }
 
     public static void main(String[] args) {

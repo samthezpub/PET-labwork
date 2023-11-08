@@ -25,6 +25,7 @@ import javafx.fxml.FXML;
 
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import lombok.SneakyThrows;
@@ -94,6 +95,7 @@ public class MainFormController extends Parent {
         // тут должна быть форма, но я пока впихну диалоговое окно
         MavenXpp3Reader reader = new MavenXpp3Reader();
         Model model = null;
+
         try {
             model = reader.read(new FileReader("pom.xml"));
         } catch (IOException e) {
@@ -125,9 +127,6 @@ public class MainFormController extends Parent {
     }
 
     private void initializeGraphicForm() {
-
-
-
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("graphic.fxml"));
         try {
             root = fxmlLoader.load();
@@ -144,6 +143,8 @@ public class MainFormController extends Parent {
         stage.setScene(scene);
 
         graphicStage = stage;
+
+        graphicStage.getIcons().add(new Image(this.getClass().getResourceAsStream("/pictures/aboutlogo.png")));
     }
 
 
@@ -155,6 +156,9 @@ public class MainFormController extends Parent {
             Stage stage = new Stage();
             stage.setTitle("Методичка");
             stage.setScene(new Scene(root1));
+
+            stage.getIcons().add(new Image(this.getClass().getResourceAsStream("/pictures/aboutlogo.png")));
+
             stage.show();
         } catch (Exception e) {
             System.out.println(e.getMessage());
