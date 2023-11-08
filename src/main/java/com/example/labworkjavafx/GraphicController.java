@@ -3,6 +3,9 @@ package com.example.labworkjavafx;
 import java.net.URL;
 import java.nio.channels.Selector;
 import java.util.ResourceBundle;
+
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
@@ -20,21 +23,11 @@ public class GraphicController {
     @FXML
     private LineChart<String, Number> graphic;
 
-    @FXML
-    private Slider temperatureSlider;
-
-    public void setTemperatureSlider(Slider temperatureSlider) {
-        this.temperatureSlider = temperatureSlider;
+    public void addGraphicPoint(int temperature, int pressure){
+        XYChart.Series<String , Number> series = graphic.getData().get(0);
+        series.getData().add(new XYChart.Data<>(String.valueOf(pressure) + "P", temperature));
     }
 
-    void addGraphicPoint(){
-        temperatureSlider.getValue();
-
-        XYChart.Series<String, Number> series = graphic.getData().get(0);
-        series.setName("График изменений");
-
-        series.getData().add(new XYChart.Data<>("temp"+temperatureSlider.getValue(), 5.0));
-    }
 
     @FXML
     void initialize() {
@@ -42,11 +35,6 @@ public class GraphicController {
 
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         series.setName("График изменений");
-
-        series.getData().add(new XYChart.Data<>("temp", 2.0));
-        series.getData().add(new XYChart.Data<>("Category 2", 3.0));
-        series.getData().add(new XYChart.Data<>("Category 3", 5.0));
-
 
 
         graphic.getData().add(series);
