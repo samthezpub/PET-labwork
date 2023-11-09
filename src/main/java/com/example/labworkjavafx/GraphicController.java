@@ -4,6 +4,7 @@ import java.net.URL;
 import java.nio.channels.Selector;
 import java.util.ResourceBundle;
 
+import javafx.application.Platform;
 import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -24,8 +25,17 @@ public class GraphicController {
     private LineChart<String, Number> graphic;
 
     public void addGraphicPoint(int temperature, int pressure){
-        XYChart.Series<String , Number> series = graphic.getData().get(0);
-        series.getData().add(new XYChart.Data<>(String.valueOf(pressure) + "P", temperature));
+        Platform.runLater(() -> {
+            XYChart.Series<String, Number> series = graphic.getData().get(0);
+            series.getData().add(new XYChart.Data<>(String.valueOf(pressure) + "P", temperature));
+        });
+    }
+
+    public void clearGraphic() {
+        Platform.runLater(() -> {
+            XYChart.Series<String, Number> series = graphic.getData().get(0);
+            series.getData().clear();
+        });
     }
 
 
@@ -36,8 +46,6 @@ public class GraphicController {
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         series.setName("График изменений");
 
-
         graphic.getData().add(series);
     }
-
 }

@@ -119,11 +119,8 @@ public class MainFormController extends Parent {
 
     @FXML
     void graphic_clicked(ActionEvent event) {
-
-
         graphicStage.show();
         graphicStage.setResizable(false);
-
     }
 
     private void initializeGraphicForm() {
@@ -135,7 +132,6 @@ public class MainFormController extends Parent {
         }
 
         graphicController = fxmlLoader.getController();
-
 
         Scene scene = new Scene(root, 700, 500); // Создание сцены для дочерней формы
         Stage stage = new Stage();
@@ -212,6 +208,7 @@ public class MainFormController extends Parent {
 
         if (temperatureSlider.getValue() == temperatureSlider.getMax()){
             temperatureSlider.setValue(0);
+            graphicController.clearGraphic();
         }
 
         start_button.setText("Продолжить");
