@@ -165,12 +165,14 @@ public class MainFormController extends Parent {
         public void run() {
             try {
                 for (int i = 0; i < temperatureSlider.getMax()-1; i++) {
-                    if (temperatureSlider.getValue() >= 500){
+                    if (temperatureSlider.getValue() >= temperatureSlider.getMax()){
                         Platform.runLater(() -> {
                             start_button.setText("Сначала");
 
                             start_button.setDisable(false);
                             stop_button.setDisable(true);
+
+                            paramsSettings.setDisable(false);
                         });
                         this.interrupt();
                         return;
@@ -213,6 +215,8 @@ public class MainFormController extends Parent {
 
         start_button.setText("Продолжить");
 
+        paramsSettings.setDisable(true);
+
         thread = new MyThread();
         thread.start();
     }
@@ -221,6 +225,8 @@ public class MainFormController extends Parent {
     void stopButton_clicked(ActionEvent event) {
         start_button.setDisable(false);
         stop_button.setDisable(true);
+
+        paramsSettings.setDisable(false);
 
         thread.interrupt();
     }
