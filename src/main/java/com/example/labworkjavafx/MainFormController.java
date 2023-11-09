@@ -179,7 +179,7 @@ public class MainFormController extends Parent {
                     }
                     sleep(100);
 
-                    int pressure = 100+i;
+                    int pressure = (int) Double.parseDouble(pressure_display.getText());
                     graphicController.addGraphicPoint((int) temperatureSlider.getValue(), pressure);
                     temperatureSlider.setValue(temperatureSlider.getValue() + 1);
                     changeTableValues();
