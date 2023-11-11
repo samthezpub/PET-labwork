@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -43,6 +44,9 @@ import javafx.stage.Stage;
 
 
 public class MainFormController extends Parent {
+    DecimalFormat df = new DecimalFormat("0.00");
+
+
 
     @FXML
     private ResourceBundle resources;
@@ -316,7 +320,7 @@ public class MainFormController extends Parent {
         variables.add(new MainVariablesData("Молярная масса (m)", experimentEntity.getMolarMass() ,"г/моль"));
         variables.add(new MainVariablesData("Газ", experimentEntity.getGasName(), gasTypeChoiseBox.getValue().getChemical()));
         variables.add(new MainVariablesData("Объем (V)", experimentEntity.getVolume(), "л"));
-        variables.add(new MainVariablesData("Газовая константа (R)", experimentEntity.getGasConstantR(), "Дж/(Кг*моль)"));
+        variables.add(new MainVariablesData("Газовая константа (R)", experimentEntity.getGasConstantR(), "Дж/(кг*моль)"));
         variables.add(new MainVariablesData("Масса (m)", experimentEntity.getWeight(), "кг"));
         variables.add(new MainVariablesData("Давление (P)", experimentEntity.getPressure(), "Па"));
         variables.add(new MainVariablesData("Температура (T)", String.valueOf(experimentEntity.getTemperature()), "К"));
@@ -345,7 +349,7 @@ public class MainFormController extends Parent {
         */
         Thread backgroundThread = new Thread(() -> {
             Platform.runLater(() -> {
-                pressure_display.setText(experimentEntity.getPressure());
+                pressure_display.setText(df.format(Double.valueOf(experimentEntity.getPressure().replace(',', '.'))));
                 temperature_display.setText(experimentEntity.getTemperature());
             });
         });
