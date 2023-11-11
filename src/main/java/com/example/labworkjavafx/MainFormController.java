@@ -152,6 +152,7 @@ public class MainFormController extends Parent {
             Stage stage = new Stage();
             stage.setTitle("Методичка");
             stage.setScene(new Scene(root1));
+            stage.setResizable(false);
 
             stage.getIcons().add(new Image(this.getClass().getResourceAsStream("/pictures/aboutlogo.png")));
 
@@ -312,13 +313,13 @@ public class MainFormController extends Parent {
 
     private void setTableValues(ExperimentEntity experimentEntity) {
         ArrayList<MainVariablesData> variables = new ArrayList<>(10);
-        variables.add(new MainVariablesData("m", "г/моль"));
+        variables.add(new MainVariablesData("Молярная масса (m)", experimentEntity.getMolarMass() ,"г/моль"));
         variables.add(new MainVariablesData("Газ", experimentEntity.getGasName(), gasTypeChoiseBox.getValue().getChemical()));
-        variables.add(new MainVariablesData("Объем", experimentEntity.getVolume(), "л"));
-        variables.add(new MainVariablesData("Универсальная газовая константа", experimentEntity.getGasConstantR(), "Дж/(Кг*моль)"));
-        variables.add(new MainVariablesData("Масса", experimentEntity.getWeight(), "кг"));
-        variables.add(new MainVariablesData("Давление", experimentEntity.getPressure(), "Па"));
-        variables.add(new MainVariablesData("Температура", String.valueOf(experimentEntity.getTemperature()), "К"));
+        variables.add(new MainVariablesData("Объем (V)", experimentEntity.getVolume(), "л"));
+        variables.add(new MainVariablesData("Газовая константа (R)", experimentEntity.getGasConstantR(), "Дж/(Кг*моль)"));
+        variables.add(new MainVariablesData("Масса (m)", experimentEntity.getWeight(), "кг"));
+        variables.add(new MainVariablesData("Давление (P)", experimentEntity.getPressure(), "Па"));
+        variables.add(new MainVariablesData("Температура (T)", String.valueOf(experimentEntity.getTemperature()), "К"));
 
         ObservableList<MainVariablesData> mainVariablesData = FXCollections.observableArrayList(variables);
         variablesTable.setItems(mainVariablesData);

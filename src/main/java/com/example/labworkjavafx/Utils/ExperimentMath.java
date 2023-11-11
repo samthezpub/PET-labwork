@@ -28,10 +28,10 @@ public class ExperimentMath {
         float b = gasType.getB(); // Константа b
         float n = gasType.getMass() / R; // Количество молей
         double T = temp; // Температура
-        double P = ((n * R * T) / (volume - n * b)) - (n * n * a) / (volume * volume); //
+        double P = ((n * R * T) / (volume - n * b)) - ((n * n * a) / (volume * volume)); //
 
         ExperimentEntity experimentEntity = new ExperimentEntity(
-                df.format(gasType.getMass()),
+                String.valueOf(gasType.getMass()),
                 gasType.getTitle(),
                 df.format(volume),
                 df.format(a),
