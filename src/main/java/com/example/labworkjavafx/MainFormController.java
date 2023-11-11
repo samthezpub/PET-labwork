@@ -24,11 +24,13 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import lombok.SneakyThrows;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
@@ -108,17 +110,23 @@ public class MainFormController extends Parent {
             throw new RuntimeException(e);
         }
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("О программе");
-        alert.setHeaderText(null);
+        Stage aboutStage = new Stage();
+        aboutStage.setTitle("О программе");
 
-        alert.setContentText("Имя: " + model.getName() + "\n"
-                + "Версия: " + model.getVersion() + "\n"
-                + "Авторы: " + "Java-прогеры" + "\n");
+        VBox vbox = new VBox(10);
+        vbox.setAlignment(Pos.CENTER);
 
-        alert.setGraphic(new ImageView(this.getClass().getResource("/pictures/aboutlogo.png").toString()));
+        Label nameLabel = new Label("Имя: " + model.getName());
+        Label versionLabel = new Label("Версия: " + model.getVersion());
+        Label authorsLabel = new Label("Авторы: Java-прогеры");
 
-        alert.showAndWait();
+        ImageView logoImageView = new ImageView(new Image(getClass().getResourceAsStream("/pictures/aboutlogo.png")));
+        vbox.getChildren().addAll(nameLabel, versionLabel, authorsLabel, logoImageView);
+
+        Scene scene = new Scene(vbox, 300, 200);
+        aboutStage.setScene(scene);
+
+        aboutStage.show();
     }
 
     @FXML
@@ -285,11 +293,13 @@ public class MainFormController extends Parent {
 
         ObservableList<GasTypeEnum> gasTypesObservable = FXCollections.observableList(gasTypesArray);
         gasTypeChoiseBox.setItems(gasTypesObservable);
-        gasTypeChoiseBox.setValue(gasTypesArray.get(random.nextInt(0, gasTypesArray.size()))); // Рандомный выбор элемента каждый запуск приложения
+        gasTypeChoiseBox.setValue(gasTypesArray.get(random.nextInt(gasTypesArray.size())));
+
 
 
         volumeChoiseBox.setItems(FXCollections.observableArrayList(0.1, 0.2, 0.3, 0.4, 0.5));
-        volumeChoiseBox.setValue(volumeChoiseBox.getItems().get(random.nextInt(0, volumeChoiseBox.getItems().size())));
+        volumeChoiseBox.setValue(volumeChoiseBox.getItems().get(random.nextInt(volumeChoiseBox.getItems().size())));
+
 
         roundChoiseBox.setItems(FXCollections.observableArrayList(
                 "2 знака после запятой",
@@ -299,7 +309,8 @@ public class MainFormController extends Parent {
                 "без округления"
         ));
 
-        roundChoiseBox.setValue(roundChoiseBox.getItems().get(random.nextInt(0, roundChoiseBox.getItems().size())));
+        roundChoiseBox.setValue(roundChoiseBox.getItems().get(random.nextInt(roundChoiseBox.getItems().size())));
+
 
         gasTypeChoiseBox.setOnAction(this::changeTableValues);
         volumeChoiseBox.setOnAction(this::changeTableValues);
