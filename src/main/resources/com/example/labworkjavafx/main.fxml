@@ -34,8 +34,6 @@
                 <Menu mnemonicParsing="false" text="Другое">
                     <items>
                         <MenuItem id="manual_button" mnemonicParsing="false" onAction="#manual_clicked" style="-fx-cursor: HAND;" text="Методичка" />
-                        <MenuItem id="about_button" mnemonicParsing="false" onAction="#about_clicked" style="-fx-cursor: HAND;" text="О программе" />
-                  <MenuItem mnemonicParsing="false" style="-fx-cursor: HAND;" text="Настройки" />
                     </items>
                 </Menu>
             </menus>

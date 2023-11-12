@@ -8,13 +8,18 @@ import java.text.DecimalFormat;
 
 public class ExperimentMath {
     public static ExperimentEntity calculate(GasTypeEnum gasType, double volume, double temp, String roundFormat) {
-        roundFormat = switch ((String) roundFormat) {
-            case "2 знака после запятой" -> "#.##";
-            case "3 знака после запятой" -> "#.###";
-            case "4 знака после запятой" -> "#.####";
-            case "5 знаков после запятой" -> "#.#####";
-            default -> "#.############";
-        };
+        if ("2 знака после запятой".equals(roundFormat)) {
+            roundFormat = "#.##";
+        } else if ("3 знака после запятой".equals(roundFormat)) {
+            roundFormat = "#.###";
+        } else if ("4 знака после запятой".equals(roundFormat)) {
+            roundFormat = "#.####";
+        } else if ("5 знаков после запятой".equals(roundFormat)) {
+            roundFormat = "#.#####";
+        } else {
+            roundFormat = "#.############";
+        }
+
     /*
                Шаблон для округления
     */
