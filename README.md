@@ -10,7 +10,54 @@
 
   ![labwork](https://github.com/samthezpub/labwork/assets/70057256/0eb6223b-e39e-4e71-948c-aa18978a676b)
 
+# Установка и запуск
+Программа представляет из себя exe файл.
 
+Для того чтобы запустить программу необходимо установить JRE 8 на компьютер. Вы можете скачать её в нашем релизе.
+
+# Важные моменты
+## В классе HelloApplicaton находится точка входа в приложение. В этом классе так же запускается первая сцена - MainForm
+```java
+
+public void start(Stage stage) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("main.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 700, 500);
+        stage.setTitle("Проверка уравнения Ван-дер-Вальса");
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+
+        // Устанавливает иконку
+        stage.getIcons().add(new Image(this.getClass().getResourceAsStream("/pictures/aboutlogo.png")));
+    }
+```
+
+## В MainFormController происходят основные переходы на другие формы
+```java
+    void graphic_clicked(ActionEvent event) {
+        graphicStage.show();
+        graphicStage.setResizable(false);
+      }
+
+    void manual_clicked(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("manual.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Методичка");
+            stage.setScene(new Scene(root1));
+            stage.setResizable(false);
+
+            stage.getIcons().add(new Image(this.getClass().getResourceAsStream("/pictures/aboutlogo.png")));
+
+            stage.show();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+```
+и т.д.
 
 # Разработчики
 
